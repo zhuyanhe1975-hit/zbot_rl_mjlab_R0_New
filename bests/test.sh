@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Replay an archived checkpoint in the MJLab viewer.
+#   ./bests/test.sh                      list the archived checkpoints
+#   ./bests/test.sh <dir-or-index> ...   replay one; extra args go to play.py
+# Example: ./bests/test.sh 1 --target-speed 0.3
+set -euo pipefail
+BESTS_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$BESTS_DIR")"
+
+task_of() {
+  case "$1" in
+    omni_velocity_energy_*) echo "Mjlab-Zbot-6dof-Omni-Velocity-Energy-Walking" ;;
+    velocity_energy_disturbed_*) echo "Mjlab-Zbot-6dof-Velocity-Energy-Disturbed-Walking" ;;
+    velocity_energy_tracking_*) echo "Mjlab-Zbot-6dof-Velocity-Energy-Tracking-Walking" ;;
+    *) echo "Unknown task for '$1'; add it to task_of in $0" >&2; return 1 ;;
+  esac
+}
+
+mapfile -t entries < <(cd "$BESTS_DIR" && ls -d */ | tr -d /)
+if [[ $# -eq 0 ]]; then
+  for i in "${!entries[@]}"; do echo "$((i + 1)) ${entries[$i]}"; done
+  exit 0
+fi
+
+pick="${1%/}"
+shift
+if [[ "$pick" =~ ^[0-9]+$ ]]; then
+  pick="${entries[$((pick - 1))]:?no such index}"
+fi
+checkpoint="$(ls "$BESTS_DIR/$pick"/model_*.pt | head -n1)"
+
+exec "$PROJECT_DIR/scripts/python.sh" "$PROJECT_DIR/play.py" "$(task_of "$pick")" \
+  --checkpoint-file "$checkpoint" "$@"
