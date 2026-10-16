@@ -9,9 +9,13 @@ PROJECT_DIR="$(dirname "$BESTS_DIR")"
 
 task_of() {
   case "$1" in
+    deploy_walking_*) echo "Mjlab-Zbot-6dof-Deploy-Walking" ;;
+    flat_foot_velocity_energy_*) echo "Mjlab-Zbot-6dof-Flat-Foot-Velocity-Energy-Walking" ;;
     omni_velocity_energy_*) echo "Mjlab-Zbot-6dof-Omni-Velocity-Energy-Walking" ;;
     velocity_energy_disturbed_*) echo "Mjlab-Zbot-6dof-Velocity-Energy-Disturbed-Walking" ;;
     velocity_energy_tracking_*) echo "Mjlab-Zbot-6dof-Velocity-Energy-Tracking-Walking" ;;
+    zbot_disturbed_walking|zbot_disturbed_walking_*) echo "Mjlab-Zbot-6dof-Disturbed-Walking" ;;
+    zbot_walking|zbot_walking_*) echo "Mjlab-Zbot-6dof-Walking" ;;
     *) echo "Unknown task for '$1'; add it to task_of in $0" >&2; return 1 ;;
   esac
 }

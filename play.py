@@ -14,6 +14,7 @@ from mjlab.tasks.registry import list_tasks, load_env_cfg, load_rl_cfg
 from mjlab.viewer import ViserPlayViewer
 
 import zbot_rl_mjlab  # noqa: F401
+from zbot_rl_mjlab.cli import CliError, apply_cli
 from zbot_rl_mjlab.env_cfg import ZbotEnvCfg
 from zbot_rl_mjlab.experiments.common import latest_checkpoint
 from zbot_rl_mjlab.viewer import FollowCameraViewer
@@ -31,6 +32,10 @@ class PlayConfig:
 
 
 def main():
+    try:
+        sys.argv[1:] = apply_cli()
+    except CliError as error:
+        sys.exit(f"error: {error}")
     task, remaining = tyro.cli(
         tyro.extras.literal_type_from_choices(
             [t for t in list_tasks() if t.startswith("Mjlab-Zbot")]

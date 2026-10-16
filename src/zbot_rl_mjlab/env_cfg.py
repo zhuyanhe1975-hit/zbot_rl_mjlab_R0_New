@@ -57,9 +57,12 @@ def env_cfg(play=False):
     )
     height = TerrainHeightSensorCfg(
         name="foot_height_scan",
+        # Rays start at the sole sites, not the foot bodies: foot_1 is the old "b6"
+        # body whose origin sits ~54 mm above its sole, which shifted its clearance
+        # reading and let rays hit neighbouring links.
         frame=(
-            ObjRef(type="body", name="foot_0", entity="robot"),
-            ObjRef(type="body", name="foot_1", entity="robot"),
+            ObjRef(type="site", name="foot_0_sole", entity="robot"),
+            ObjRef(type="site", name="foot_1_sole", entity="robot"),
         ),
         ray_alignment="yaw",
         pattern=RingPatternCfg.single_ring(radius=0.03, num_samples=6),

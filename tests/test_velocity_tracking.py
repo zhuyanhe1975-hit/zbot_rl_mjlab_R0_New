@@ -3,13 +3,13 @@ from types import SimpleNamespace
 import torch
 
 from zbot_rl_mjlab.experiments import velocity_tracking as tracking
-from zbot_rl_mjlab.experiments.flat_walking import walking_cfg
+from zbot_rl_mjlab.experiments.flat_walking import FlatWalking
 
 
 def test_tracking_inherits_flat_without_disturbances():
     for play in (False, True):
-        flat = walking_cfg(play=play)
-        cfg = tracking.velocity_tracking_cfg(play=play)
+        flat = FlatWalking().build_env(play=play)
+        cfg = tracking.VelocityTracking().build_env(play=play)
         assert cfg.events == flat.events
         assert cfg.scene.sensors == flat.scene.sensors
         assert (cfg.step_frequency_min, cfg.step_frequency_max) == (0.25, 1.0)

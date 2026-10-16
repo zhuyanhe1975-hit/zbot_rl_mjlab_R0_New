@@ -6,3 +6,4 @@ MUJOCO_LOG.TXT
 logs/
 outputs/
 work/
+.omx/

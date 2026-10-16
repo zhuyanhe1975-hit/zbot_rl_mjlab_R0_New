@@ -3,25 +3,25 @@
 from mjlab.managers.reward_manager import RewardTermCfg
 
 from .. import mdp
-from .velocity_tracking import velocity_tracking_cfg, velocity_tracking_ppo_cfg
+from .base import RewardEdit
+from .velocity_tracking import VelocityTracking
 
 VELOCITY_ENERGY_TRACKING_TASK_ID = "Mjlab-Zbot-6dof-Velocity-Energy-Tracking-Walking"
 
 
-def velocity_energy_tracking_cfg(play=False):
-    cfg = velocity_tracking_cfg(play=play)
-    cfg.rewards.pop("frequency_tracking", None)
-    cfg.rewards["joint_acceleration"].weight = -0.0001
-    cfg.rewards["lateral_velocity"].weight = -0.5
-    cfg.rewards["joint_energy"] = RewardTermCfg(
-        func=mdp.joint_energy_penalty,
-        weight=-0.5,
-        params={"energy_scale": 10.0},
-    )
-    return cfg
+class VelocityEnergyTracking(VelocityTracking):
+    task_id = VELOCITY_ENERGY_TRACKING_TASK_ID
+    experiment_name = "zbot_velocity_energy_tracking"
 
-
-def velocity_energy_tracking_ppo_cfg():
-    cfg = velocity_tracking_ppo_cfg()
-    cfg.experiment_name = "zbot_velocity_energy_tracking"
-    return cfg
+    def reward_edit(self):
+        return RewardEdit(
+            remove=("frequency_tracking",),
+            weights={"joint_acceleration": -0.0001, "lateral_velocity": -0.5},
+            terms={
+                "joint_energy": RewardTermCfg(
+                    func=mdp.joint_energy_penalty,
+                    weight=-0.5,
+                    params={"energy_scale": 10.0},
+                )
+            },
+        )

@@ -6,7 +6,8 @@ from mjlab.managers.reward_manager import RewardTermCfg
 from mjlab.tasks.velocity.mdp import UniformVelocityCommand, UniformVelocityCommandCfg
 
 from .. import mdp
-from .flat_walking import walking_cfg, walking_ppo_cfg
+from .base import RewardEdit
+from .flat_walking import FlatWalking
 
 VELOCITY_TRACKING_TASK_ID = "Mjlab-Zbot-6dof-Velocity-Tracking-Walking"
 
@@ -73,24 +74,25 @@ def velocity_command_cfg(
     )
 
 
-def velocity_tracking_cfg(play=False):
-    cfg = walking_cfg(play=play)
-    cfg.step_frequency_min = 0.25
-    cfg.step_frequency_max = 1.0
-    cfg.test_frequency = None
-    cfg.frequency_sampling = "random"
-    cfg.commands["target_speed"] = velocity_command_cfg(sequential=play)
-    for group in cfg.observations.values():
-        group.terms = dict(group.terms)
-        group.terms["target_speed"] = ObservationTermCfg(func=target_speed)
-    cfg.rewards.pop("forward_velocity")
-    cfg.rewards["track_forward_speed"] = RewardTermCfg(
-        func=track_forward_speed, weight=2.0, params={"std": 0.1}
-    )
-    return cfg
+class VelocityTracking(FlatWalking):
+    task_id = VELOCITY_TRACKING_TASK_ID
+    experiment_name = "zbot_velocity_tracking"
+    step_frequency = (0.25, 1.0)
 
+    def reward_edit(self):
+        return RewardEdit(
+            remove=("forward_velocity",),
+            terms={
+                "track_forward_speed": RewardTermCfg(
+                    func=track_forward_speed, weight=2.0, params={"std": 0.1}
+                )
+            },
+        )
 
-def velocity_tracking_ppo_cfg():
-    cfg = walking_ppo_cfg()
-    cfg.experiment_name = "zbot_velocity_tracking"
-    return cfg
+    def edit(self, cfg, play):
+        cfg.test_frequency = None
+        cfg.frequency_sampling = "random"
+        cfg.commands["target_speed"] = velocity_command_cfg(sequential=play)
+        for group in cfg.observations.values():
+            group.terms = dict(group.terms)
+            group.terms["target_speed"] = ObservationTermCfg(func=target_speed)

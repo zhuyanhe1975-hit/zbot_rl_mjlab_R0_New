@@ -123,6 +123,25 @@ rd, nd = dof("ref"), dof("native")
 rb, nb = body("ref"), body("native")
 
 
+def native_ctrl_slots():
+    """Control indices of the native robot's six position targets, found by name.
+
+    The robot's actuator is a <position> servo per joint, named after its joint, so the
+    slots are looked up instead of assuming the native robot comes second in ``ctrl``.
+    """
+    slots = []
+    for i in range(1, 7):
+        name = f"native/joint{i}"
+        index = mujoco.mj_name2id(m, mujoco.mjtObj.mjOBJ_ACTUATOR, name)
+        if index < 0:
+            raise KeyError(f"actuator {name} not found; the robot's actuator changed")
+        slots.append(index)
+    return np.array(slots)
+
+
+native_ctrl = native_ctrl_slots()
+
+
 def locomotion_frame(r):
     """Mirror mdp.locomotion_frame: forward = gravity x body_z_h, left = forward x gravity."""
     gravity = np.array([0.0, 0.0, -1.0])
@@ -277,8 +296,7 @@ def paired_policy(mj_obs):
     native_step += 1
     place_ref()
     d.ctrl[:] = 0
-    for i in range(6):
-        d.ctrl[6 + i] = default[i] + ACTION_SCALE * native_action[i]
+    d.ctrl[native_ctrl] = default + ACTION_SCALE * native_action
     for _ in range(a.decimation):
         mujoco.mj_step(m, d)
     return ref_action

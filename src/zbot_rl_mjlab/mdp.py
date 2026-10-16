@@ -477,6 +477,60 @@ def foot_nonparallel_ground_penalty(env, sensor_name="feet_ground_contact", std=
     return ((1.0 - reward) * contact).sum(-1) / contact.sum(-1).clamp_min(1.0)
 
 
+def sole_tilt_sq(env):
+    """sin^2 of each sole's tilt from horizontal, shape (num_envs, 2).
+
+    Uses the z-component of the sole-site normal squared, so it does not matter
+    whether the site z-axis points into the foot or out of it (foot_1's points
+    out) and it is smooth at zero tilt, unlike an angle.
+    """
+    robot = env.scene["robot"]
+    sites = robot.find_sites(("foot_0_sole", "foot_1_sole"), preserve_order=True)[0]
+    return tilt_sq_from_quat(robot.data.site_quat_w[:, sites])
+
+
+def tilt_sq_from_quat(quat):
+    """sin^2 of the angle between the body z-axis and world z (quat is w, x, y, z)."""
+    normal_z = 1.0 - 2.0 * (quat[..., 1].square() + quat[..., 2].square())
+    return (1.0 - normal_z.square()).clamp_min(0.0)
+
+
+def _flat_cost(env, sigma):
+    """0 for a perfectly flat sole, saturating to 1; sigma is about sin(tilt) at 63%."""
+    if sigma <= 0:
+        raise ValueError("Flatness sigma must be positive")
+    return 1.0 - torch.exp(-sole_tilt_sq(env) / sigma**2)
+
+
+def stance_flat_penalty(env, sigma=0.05, sensor_name="feet_ground_contact"):
+    """Penalize a loaded sole that is not flat on the ground (mean over loaded feet)."""
+    contact = feet_contact(env, sensor_name)
+    return (_flat_cost(env, sigma) * contact).sum(-1) / contact.sum(-1).clamp_min(1.0)
+
+
+def touchdown_flat_penalty(env, sigma=0.05, sensor_name="feet_ground_contact"):
+    """Extra penalty on the step a foot first touches down, when it must land flat."""
+    first = env.scene[sensor_name].compute_first_contact(dt=env.step_dt).float()
+    return (_flat_cost(env, sigma) * first).sum(-1)
+
+
+def pre_landing_flat_penalty(
+    env, sigma=0.05, height=0.03, sensor_name="feet_ground_contact"
+):
+    """Penalize an airborne sole that is already close to the ground yet not flat.
+
+    Height is the sole-site height above the ground plane, not the foot body
+    origin, because the sole plane is what touches the ground.
+    """
+    robot = env.scene["robot"]
+    sites = robot.find_sites(("foot_0_sole", "foot_1_sole"), preserve_order=True)[0]
+    sole_height = robot.data.site_pos_w[:, sites, 2] - env.scene.env_origins[:, 2:3]
+    approaching = (sole_height < height).float() * (
+        1.0 - feet_contact(env, sensor_name)
+    )
+    return (_flat_cost(env, sigma) * approaching).sum(-1)
+
+
 def swing_foot_acceleration_penalty(
     env, acceleration_sensors, acceleration_scale, sensor_name="feet_ground_contact"
 ):

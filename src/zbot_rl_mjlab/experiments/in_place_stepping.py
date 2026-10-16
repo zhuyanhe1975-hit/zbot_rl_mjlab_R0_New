@@ -1,16 +1,12 @@
-"""Periodic in-place stepping task entry point."""
+"""Periodic in-place stepping: the shared Zbot environment with no changes."""
 
-from ..env_cfg import TASK_ID, env_cfg, ppo_cfg
-
-
-def stepping_cfg(play=False):
-    return env_cfg(play=play)
+from ..env_cfg import TASK_ID
+from .base import Experiment
 
 
-def stepping_ppo_cfg():
-    cfg = ppo_cfg()
-    cfg.experiment_name = "zbot_periodic_stepping"
-    return cfg
+class PeriodicStepping(Experiment):
+    task_id = TASK_ID
+    experiment_name = "zbot_periodic_stepping"
 
 
-__all__ = ["TASK_ID", "stepping_cfg", "stepping_ppo_cfg"]
+__all__ = ["TASK_ID", "PeriodicStepping"]
