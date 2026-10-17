@@ -132,7 +132,10 @@ def main():
             snake_count = int((values < 0).sum().item())
             print(f"Initial directions: snake -> stand {stand_count}, biped -> snake {snake_count}")
             print(f"Commands (first 16 envs; +1 stand, -1 snake): {values[:16].tolist()}")
-            print("Transform controls: PageUp = stand (+1), PageDown = snake (-1). Keyboard control disables automatic resets; no pose reset.")
+            command_cfg = env.command_manager.get_term("transform").cfg
+            if command_cfg.auto_switch_on_success and command_cfg.mode == "source":
+                print(f"Automatic stand/snake alternation after {env.cfg.success_hold_s:g} s stable near the goal (joint tolerance {command_cfg.auto_switch_joint_tolerance:g} rad).")
+            print("Transform controls: ] = stand (+1), [ = snake (-1). Keyboard control locks the command and disables automatic resets; no pose reset.")
         viewer = FollowCameraViewer if cfg.viewer == "native" else ViserPlayViewer
         viewer(wrapped, policy).run()
     finally:

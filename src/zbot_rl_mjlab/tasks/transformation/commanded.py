@@ -29,8 +29,10 @@ class BidirectionalEnvCfg(robust.RobustSnakeToBipedEnvCfg):
 
 @dataclass(kw_only=True)
 class TransformCommandCfg(CommandTermCfg):
-    # Hold the opposite target from the sampled source pose for this episode.
+    # Start opposite the sampled source; automatically alternate after success.
     mode: str = "source"
+    auto_switch_on_success: bool = True
+    auto_switch_joint_tolerance: float = 0.15
 
     def build(self, env):
         return TransformCommand(self, env)
@@ -44,12 +46,16 @@ class TransformCommand(CommandTerm):
         super().__init__(cfg, env)
         if cfg.mode not in ("source", "stand", "snake"):
             raise ValueError("transform command mode must be source, stand or snake")
+        if not math.isfinite(cfg.auto_switch_joint_tolerance) or cfg.auto_switch_joint_tolerance <= 0:
+            raise ValueError("auto_switch_joint_tolerance must be finite and positive")
         lo, hi = cfg.resampling_time_range
         if not (math.isfinite(lo) and math.isfinite(hi) and 0 < lo <= hi):
             raise ValueError("command resampling times must be finite and positive")
         self._command = torch.ones(self.num_envs, 1, device=self.device)
         self.start_step = torch.zeros(self.num_envs, dtype=torch.long, device=self.device)
         self.manual_control = torch.zeros(self.num_envs, dtype=torch.bool, device=self.device)
+        self.switch_hold_time = torch.zeros(self.num_envs, device=self.device)
+        self.metrics["completed_transitions"] = torch.zeros(self.num_envs, device=self.device)
 
     @property
     def command(self):
@@ -69,7 +75,24 @@ class TransformCommand(CommandTerm):
         pass
 
     def _update_command(self, env_ids):
-        pass
+        # MJLab calls this after rewards/metrics and before the new observation.
+        # Reset-scoped updates must never advance other environments.
+        if env_ids is not None or not self.cfg.auto_switch_on_success or self.cfg.mode != "source":
+            return
+        ready = (self.switch_hold_time >= self._env.cfg.success_hold_s - 1e-5)
+        ready &= auto_switch_condition(self._env) & ~self.manual_control
+        reset_buf = getattr(self._env, "reset_buf", None)
+        if reset_buf is not None:
+            ready &= ~reset_buf
+        ids = ready.nonzero().flatten()
+        if not len(ids):
+            return
+        self._command[ids] *= -1
+        self.start_step[ids] = self._env.common_step_counter
+        self.time_left[ids] = math.inf
+        self.command_counter[ids] += 1
+        self.metrics["completed_transitions"][ids] += 1
+        clear_command_memory(self._env, ids)
 
     def set_target(self, target: str, env_ids=None):
         """Change the target in place, without writing robot poses or action targets."""
@@ -128,6 +151,7 @@ def clear_command_memory(env, ids):
             getattr(task, name)[ids] = env.common_step_counter
         task.peak_base_height[ids] = -math.inf
         transition.reset(ids, env.common_step_counter)
+        env.command_manager.get_term("transform").switch_hold_time[ids] = 0
         if hasattr(env, "_standing_goal_valid"):
             env._standing_goal_valid[ids] = False
         # Command changes can happen between physics frames in interactive play.
@@ -136,7 +160,7 @@ def clear_command_memory(env, ids):
 
 
 def sample_initial_standing(env, ids):
-    """Balance live source directions, rather than only reset-event counts.
+    """Fill reset slots using the actual live target directions.
 
     A short failing stand episode must not turn into a long descent episode and
     progressively remove stand examples from the rollout buffer. Random ranks
@@ -150,7 +174,9 @@ def sample_initial_standing(env, ids):
         return torch.full((len(ids),), mode == "snake", dtype=torch.bool, device=env.device)
     if env.num_envs == 1:
         return torch.rand(len(ids), device=env.device) < fraction
-    current = env._transform_initial_standing
+    # Source flags describe reset poses and become stale after successful flips.
+    # A standing source receives the snake target, so count current snake goals.
+    current = command(env)[:, 0] < 0
     remaining = current.sum() - current[ids].sum()
     desired = int(env.num_envs * fraction + 0.5)
     vacancies = (desired - remaining).clamp(0, len(ids))
@@ -248,9 +274,39 @@ def sole_reward(env, angle_power=1.0):
     return torch.where(wants_stand(env), standing.sole_ground_alignment_reward(env, angle_power), 0.0)
 
 
+def stand_finish_joint_speed_cost(env):
+    """Penalize actual joint speed only once the standing base is high enough."""
+    finishing = wants_stand(env) & (standing.base_height(env) >= env.cfg.ascent_reward_stop_height)
+    cost = env.scene["robot"].data.joint_vel.square().mean(-1)
+    return torch.where(finishing, cost, 0.0)
 
-def final_condition(env):
-    return torch.where(wants_stand(env), standing.final_condition(env), mdp.final_condition(env))
+
+def ground_force_peak(env):
+    """Peak per-body ground resultant across every substep of the policy step."""
+    history = env.scene["transform_ground_contact"].data.force_history
+    return history.norm(dim=-1).flatten(1).amax(-1)
+
+
+def descent_ground_impact_cost(env, max_body_weights=2.0):
+    """Penalize excess ground force during snake commands, leaving support free."""
+    if not math.isfinite(max_body_weights) or max_body_weights <= 1:
+        raise ValueError("max_body_weights must be finite and greater than one")
+    gravity = math.sqrt(sum(component**2 for component in env.cfg.sim.mujoco.gravity))
+    if not math.isfinite(gravity) or gravity <= 0:
+        raise ValueError("ground impact normalization requires nonzero finite gravity")
+    weight = mdp.body_masses(env).sum(-1) * gravity
+    cost = (ground_force_peak(env) / weight - max_body_weights).clamp_min(0).square()
+    return torch.where(wants_stand(env), 0.0, cost)
+
+
+
+def final_condition(env, joint_tolerance=None):
+    return torch.where(wants_stand(env), standing.final_condition(env, joint_tolerance), mdp.final_condition(env, joint_tolerance))
+
+
+def auto_switch_condition(env):
+    tolerance = env.command_manager.get_term("transform").cfg.auto_switch_joint_tolerance
+    return final_condition(env, joint_tolerance=tolerance)
 
 
 def update_state(env):
@@ -259,6 +315,10 @@ def update_state(env):
     valid = final_condition(env)
     held = torch.where(valid, task.hold_time + env.step_dt, 0.0)
     task.hold_time.copy_(torch.where(fresh, held, task.hold_time))
+    term = env.command_manager.get_term("transform")
+    switch_valid = auto_switch_condition(env) & ~term.manual_control
+    switch_held = torch.where(switch_valid, term.switch_hold_time + env.step_dt, 0.0)
+    term.switch_hold_time.copy_(torch.where(fresh, switch_held, term.switch_hold_time))
     task.last_step.fill_(env.common_step_counter)
     env._standing_goal_valid = valid
     env._standing_goal_step = env.common_step_counter

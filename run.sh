@@ -56,4 +56,4 @@ source /home/yhzhu/AI/mjlab/.venv/bin/activate
 # 12、蛇足双向变形：随机蛇形/双足初态，+1站立 / -1爬下，37/45维观测。
 python play.py Mjlab-Zbot-6dof-Transform-Snake-Biped-Bidirectional \
   --env.scene.num-envs 1 \
-  --checkpoint-file logs/rsl_rl/zbot_transform_snake_biped_bidirectional/2026-10-17_18-30-25/model_500.pt
+  --checkpoint-file bests/transform_snake_biped_bidirectional_2026-10-17_iter599/model_599.pt

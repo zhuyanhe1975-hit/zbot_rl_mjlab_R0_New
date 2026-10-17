@@ -3,7 +3,7 @@
 import numpy as np
 from mjlab.viewer import NativeMujocoViewer
 from mjlab.viewer.base import ViewerAction
-from mjlab.viewer.native.keys import KEY_BACKSLASH, KEY_PAGE_DOWN, KEY_PAGE_UP
+from mjlab.viewer.native.keys import KEY_BACKSLASH, KEY_LEFT_BRACKET, KEY_RIGHT_BRACKET
 
 from . import mdp
 
@@ -36,8 +36,8 @@ class FollowCameraViewer(NativeMujocoViewer):
         # Runs on the MuJoCo viewer thread: only queue the request.
         if key == FOLLOW_KEY:
             self.request_action("CUSTOM", _FOLLOW_PAYLOAD)
-        elif key in (KEY_PAGE_UP, KEY_PAGE_DOWN):
-            self.request_action("CUSTOM", "transform_stand" if key == KEY_PAGE_UP else "transform_snake")
+        elif key in (KEY_RIGHT_BRACKET, KEY_LEFT_BRACKET):
+            self.request_action("CUSTOM", "transform_stand" if key == KEY_RIGHT_BRACKET else "transform_snake")
 
     def _handle_custom_action(self, action, payload):
         if action == ViewerAction.CUSTOM and payload == _FOLLOW_PAYLOAD:

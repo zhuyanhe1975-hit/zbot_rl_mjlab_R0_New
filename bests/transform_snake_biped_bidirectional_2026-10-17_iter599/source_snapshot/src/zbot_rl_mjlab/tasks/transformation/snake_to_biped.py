@@ -436,14 +436,15 @@ def base_ascent_velocity_reward(env, target_speed=0.03, pose_error_range: tuple[
     return constrain_standing_reward(env, score)
 
 
-def final_condition(env):
+def final_condition(env, joint_tolerance=None):
+    tolerance = env.cfg.joint_tolerance if joint_tolerance is None else joint_tolerance
     robot = env.scene["robot"]
     data = robot.data
     base_id = robot.find_bodies("base")[0][0]
     site_ids, _ = robot.find_sites(("foot_0_sole", "foot_1_sole"), preserve_order=True)
     soles = data.site_pos_w[:, site_ids, 2] - env.scene.env_origins[:, 2, None]
     return (
-        (_joint_error(env).abs().amax(-1) < env.cfg.joint_tolerance)
+        (_joint_error(env).abs().amax(-1) < tolerance)
         & both_feet_ground_contact(env)
         & torch.isfinite(data.body_link_pos_w[:, base_id]).all(-1)
         & (soles.abs().amax(-1) < env.cfg.sole_height_tolerance)
@@ -665,7 +666,7 @@ def snake_to_biped_env_cfg(play=False):
             weight=cfg.base_support_distance_weight,
         ),
         "joint_symmetry": RewardTermCfg(
-            func=mdp.joint_symmetry_cost, 
+            func=mdp.joint_symmetry_cost,
             weight=-1.0
         ),
         "sole_ground_alignment": RewardTermCfg(

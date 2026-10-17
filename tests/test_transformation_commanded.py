@@ -42,7 +42,7 @@ def test_command_task_is_registered_and_preserves_archive_contract(play):
     assert cfg.fall_retry_arm_height == cfg.early_contact_arm_height == 0.05
     assert cfg.fall_retry_drop_threshold == cfg.early_contact_drop_threshold == 0.01
     assert cfg.rewards["joint_standing"].weight == 12
-    assert len(cfg.rewards) == 5
+    assert len(cfg.rewards) == 7
     assert "goal_motion" not in cfg.rewards
     assert load_runner_cls(commanded.TASK_ID) is robust.RobustSnakeToBipedRunner
 
@@ -146,7 +146,7 @@ def test_stagnation_grace_restarts_at_command_change():
     assert robust.fall_retry_state(env).still_time.eq(0).all()
 
 
-def test_source_command_holds_for_entire_training_episode():
+def test_source_command_holds_until_goal_has_been_stable():
     env, term = environment()
     term.reset(torch.arange(2))
     for _ in range(800):
@@ -169,7 +169,7 @@ def test_native_play_keys_queue_and_apply_commands_without_pose_reset():
     instance.env = SimpleNamespace(unwrapped=env)
     instance._actions = deque()
     joints = env.scene["robot"].data.joint_pos.clone()
-    for key, expected in ((viewer.KEY_PAGE_UP, 1), (viewer.KEY_PAGE_DOWN, -1)):
+    for key, expected in ((ord("]"), 1), (ord("["), -1)):
         instance._on_key(key)
         action, payload = instance._actions.popleft()
         assert action == ViewerAction.CUSTOM
@@ -205,17 +205,20 @@ def test_partial_reset_handles_goal_mask_from_inference_without_affecting_others
 
 
 def test_frequent_stand_resets_cannot_starve_live_stand_samples():
-    env, _term = environment()
+    env, term = environment()
     env.num_envs = 128
+    term._command = torch.ones(128, 1)
     env._transform_initial_standing = torch.zeros(128, dtype=torch.bool)
     ids = torch.arange(128)
     env._transform_initial_standing[ids] = commanded.sample_initial_standing(env, ids)
+    term._command[:, 0] = torch.where(env._transform_initial_standing, -1., 1.)
     assert env._transform_initial_standing.sum() == 64
     # Stand fails at ~0.12 s while descent lasts 16 s: reproduce many resets
     # from only the snake-source half. The training frames must stay 50/50.
     for _ in range(150):
         ids = (~env._transform_initial_standing).nonzero().flatten()
         env._transform_initial_standing[ids] = commanded.sample_initial_standing(env, ids)
+        term._command[:, 0] = torch.where(env._transform_initial_standing, -1., 1.)
         assert env._transform_initial_standing.sum() == 64
     ids = torch.arange(32)
     original = env._transform_initial_standing.clone()
@@ -225,8 +228,9 @@ def test_frequent_stand_resets_cannot_starve_live_stand_samples():
 
 
 def test_balanced_source_assignment_is_random_and_matches_non_half_fraction():
-    env, _term = environment()
+    env, term = environment()
     env.num_envs = 100
+    term._command = torch.ones(100, 1)
     env._transform_initial_standing = torch.zeros(100, dtype=torch.bool)
     env.cfg.initial_standing_fraction = 0.3
     ids = torch.arange(100)
@@ -276,7 +280,7 @@ def test_manual_timeout_override_only_applies_to_play():
     playback = SnakeBipedBidirectional().build_env(play=True)
     assert training.terminations["time_out"].func is commanded.common_mdp.time_out
     assert playback.terminations["time_out"].func is commanded.play_time_out
-    assert len(training.rewards) == len(playback.rewards) == 5
+    assert len(training.rewards) == len(playback.rewards) == 7
 
 
 @pytest.mark.parametrize("name", ["fallen_after_standing", "early_base_ground_contact", "abandoned_exploration"])
@@ -296,7 +300,7 @@ def test_play_manual_commands_mask_every_failure_without_changing_training(name)
     assert not entry.func(env, condition=trigger).any()
 
 
-def test_page_keys_dispatch_custom_commands_without_requesting_viewer_reset():
+def test_bracket_keys_dispatch_custom_commands_without_requesting_viewer_reset():
     from collections import deque
 
     from mjlab.viewer.base import ViewerAction
@@ -306,11 +310,11 @@ def test_page_keys_dispatch_custom_commands_without_requesting_viewer_reset():
     instance = object.__new__(viewer.FollowCameraViewer)
     instance._actions = deque()
     instance.user_key_callback = instance._on_key
-    for key in (viewer.KEY_PAGE_UP, viewer.KEY_PAGE_DOWN):
+    for key, expected in ((ord("]"), "transform_stand"), (ord("["), "transform_snake")):
         instance._safe_key_callback(key)
         action, payload = instance._actions.popleft()
         assert action == ViewerAction.CUSTOM
-        assert payload in ("transform_stand", "transform_snake")
+        assert payload == expected
         assert not instance._actions
 
 

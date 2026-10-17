@@ -85,7 +85,7 @@ def test_follow_key_toggles_only_through_the_action_queue():
     v = object.__new__(zviewer.FollowCameraViewer)
     v._actions = __import__("collections").deque()
     v._follow = False
-    v._on_key(zviewer.FOLLOW_KEY + 1)  # another key: nothing queued
+    v._on_key(ord("~"))  # An unbound key: nothing queued.
     assert not v._actions
     v._on_key(zviewer.FOLLOW_KEY)
     action, payload = v._actions.popleft()

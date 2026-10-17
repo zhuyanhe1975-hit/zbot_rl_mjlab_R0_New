@@ -68,11 +68,12 @@ def hold_observation(env):
     return (state(env).hold_time / env.cfg.success_hold_s).unsqueeze(-1)
 
 
-def final_condition(env):
+def final_condition(env, joint_tolerance=None):
+    tolerance = env.cfg.joint_tolerance if joint_tolerance is None else joint_tolerance
     data, i = _base(env)
     low = (data.body_com_pos_w[..., 2] - env.scene.env_origins[:, 2, None]).amax(-1)
     return (
-        (data.joint_pos.abs().amax(-1) < env.cfg.joint_tolerance)
+        (data.joint_pos.abs().amax(-1) < tolerance)
         & (low < env.cfg.final_max_body_height)
         & (data.joint_vel.square().mean(-1).sqrt() < env.cfg.joint_speed_tolerance)
         & (data.body_link_lin_vel_w[:, i].norm(dim=-1) < env.cfg.base_speed_tolerance)

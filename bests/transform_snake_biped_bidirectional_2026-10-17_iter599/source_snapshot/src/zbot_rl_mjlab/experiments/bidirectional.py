@@ -4,6 +4,8 @@ from dataclasses import fields
 
 from mjlab.managers.metrics_manager import MetricsTermCfg
 from mjlab.managers.observation_manager import ObservationGroupCfg, ObservationTermCfg
+from mjlab.managers.reward_manager import RewardTermCfg
+from mjlab.sensor import ContactMatch, ContactSensorCfg
 from mjlab.tasks.registry import register_mjlab_task
 
 from ..tasks.transformation import commanded
@@ -39,6 +41,19 @@ class SnakeBipedBidirectional(SnakeToBipedTeacher):
         cfg.events["reset_transition"].func = commanded.reset_command_transition
         for name, func in (("joint_standing", commanded.pose_reward), ("base_height_progress", commanded.height_reward), ("base_ascent_velocity", commanded.velocity_reward), ("sole_ground_alignment", commanded.sole_reward)):
             cfg.rewards[name].func = func
+        cfg.rewards["stand_finish_joint_speed"] = RewardTermCfg(
+            func=commanded.stand_finish_joint_speed_cost, weight=-0.02,
+        )
+        cfg.rewards["descent_ground_impact"] = RewardTermCfg(
+            func=commanded.descent_ground_impact_cost, weight=-2.0,
+            params={"max_body_weights": 2.0},
+        )
+        cfg.scene.sensors = (*cfg.scene.sensors, ContactSensorCfg(
+            name="transform_ground_contact",
+            primary=ContactMatch(mode="body", pattern=".*", entity="robot"),
+            secondary=ContactMatch(mode="body", pattern="terrain"),
+            fields=("force",), reduce="netforce", history_length=cfg.decimation,
+        ))
         for name, func in (("update_state", commanded.update_state), ("fallen_after_standing", commanded.fallen), ("early_base_ground_contact", commanded.early_contact), ("abandoned_exploration", commanded.abandoned_exploration)):
             cfg.terminations[name].func = func
         if play:
@@ -49,6 +64,9 @@ class SnakeBipedBidirectional(SnakeToBipedTeacher):
                 term.func = commanded.play_failure
         cfg.metrics["joint_error"].func = commanded.joint_error
         cfg.metrics["success"].func = commanded.success
+        cfg.metrics["success"].reduce = "max"
         cfg.metrics["transform_command"] = MetricsTermCfg(func=commanded.command_metric, reduce="last")
         cfg.metrics["stand_env_fraction"] = MetricsTermCfg(func=commanded.stand_env_fraction)
+        cfg.metrics["stand_finish_joint_speed"] = MetricsTermCfg(func=commanded.stand_finish_joint_speed_cost)
+        cfg.metrics["ground_force_peak_n"] = MetricsTermCfg(func=commanded.ground_force_peak, reduce="max")
         return cfg
