@@ -1,5 +1,13 @@
 # Task and experiment structure
 
+Tasks are organized by behavior category. Walking uses the shared configuration
+described below. Transformation tasks have their own environment under
+`src/zbot_rl_mjlab/tasks/transformation/`: they change support contacts and body
+configuration, so walking phases, rewards, and fall criteria do not apply.
+The category includes biped-to-snake, snake-to-biped, and an independent
+command-conditioned snake/biped bidirectional experiment.
+Both categories use the existing task registry, training, and playback entrypoints.
+
 The shared task contract lives in `src/zbot_rl_mjlab/env_cfg.py`: scene, robot,
 sensors, observations, actions, terminations, common rewards, and PPO defaults.
 

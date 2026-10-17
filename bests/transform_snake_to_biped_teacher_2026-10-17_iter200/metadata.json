@@ -1,0 +1,81 @@
+{
+  "task": "Mjlab-Zbot-6dof-Transform-Snake-To-Biped-Beta-Robust-Teacher",
+  "archived_at": "2026-10-17T17:39:22.863890+08:00",
+  "source_run": "logs/rsl_rl/zbot_transform_snake_to_biped_teacher/2026-10-17_17-24-59",
+  "source_checkpoint": "logs/rsl_rl/zbot_transform_snake_to_biped_teacher/2026-10-17_17-24-59/model_200.pt",
+  "iteration": 200,
+  "user_assessment": "User observed successful recovery from randomized longitudinal roll and requested archival.",
+  "architecture": {
+    "actor_observations": 36,
+    "critic_observations": 44,
+    "policy_actions": 3,
+    "actuator_targets": 6,
+    "distribution": "Beta",
+    "mirror": "[q1,q2,q3,-q3,-q2,-q1]",
+    "actor_running_normalization": false
+  },
+  "recipe": {
+    "joint_standing": 12,
+    "base_height_progress": 1,
+    "base_ascent_velocity": 8,
+    "sole_ground_alignment": 1,
+    "reset_failure": -10,
+    "ascent_reward_stop_height_m": 0.23,
+    "pose_speed_fade_max_joint_error_rad": [
+      0.2,
+      0.8
+    ],
+    "sole_angle_scale_degrees": 10,
+    "sole_angle_power": 1,
+    "initial_roll_range_degrees": [
+      -90,
+      90
+    ],
+    "external_disturbance_enabled": false
+  },
+  "validation": {
+    "environments": 16,
+    "episode_seconds": 16,
+    "seed": 42,
+    "success_rate": 1.0,
+    "all_ended_by_timeout": true,
+    "minimum_continuous_hold_seconds": 13.780125617980957,
+    "maximum_final_sole_angle_degrees": 0.06852804869413376,
+    "maximum_final_joint_error_radians": 0.03659006953239441,
+    "initial_roll_offsets_degrees": [
+      58.65602493286133,
+      -51.69822692871094,
+      41.255950927734375,
+      -32.229068756103516,
+      45.896244049072266,
+      -51.619327545166016,
+      77.00196075439453,
+      -64.03660583496094,
+      -27.506704330444336,
+      89.54154205322266,
+      9.563018798828125,
+      -45.15449905395508,
+      77.42920684814453,
+      -39.73506546020508,
+      61.69362258911133,
+      3.830498218536377
+    ]
+  },
+  "source_snapshot": "source_snapshot/src, source_snapshot/assets/zbot_6dof, play.py and transformation_eval.py; current code at archival, not a complete environment or history. Play default seed changed to -1 after training; evaluation explicitly uses seed 42.",
+  "dependencies": {
+    "torch": "2.14.0",
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.14.0",
+    "mjlab": "1.6.0",
+    "rsl-rl-lib": "5.5.1"
+  },
+  "git_head": "4c1be1464c0c798bd9a1ad6261ea405443a40839",
+  "working_tree_dirty": true,
+  "not_tested": [
+    "Hardware",
+    "External force/torque robustness",
+    "Longer than 16 seconds",
+    "Seeds beyond the saved 16-environment evaluation"
+  ]
+}

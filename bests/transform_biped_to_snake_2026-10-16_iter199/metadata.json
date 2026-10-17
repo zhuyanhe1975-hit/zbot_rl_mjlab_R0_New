@@ -1,0 +1,23 @@
+{
+  "task": "Mjlab-Zbot-6dof-Transform-Biped-To-Snake",
+  "source_run": "logs/rsl_rl/zbot_transform_biped_to_snake/2026-10-16_15-43-07",
+  "source_checkpoint": "logs/rsl_rl/zbot_transform_biped_to_snake/2026-10-16_15-43-07/model_199.pt",
+  "iteration": 199,
+  "user_report": "User reports the redesigned task learned quickly; archive explicitly requested.",
+  "validation": {
+    "strict_actor_load": "passed",
+    "archive_regression_tests": "16 passed",
+    "rollout": {
+      "num_envs": 16,
+      "episode_length_s": 16.0,
+      "timeouts": 16,
+      "unsafe_terminations": 0,
+      "strict_goal_success_rate": 0.0,
+      "final_com_height_m_range": [
+        0.05441305413842201,
+        0.054414644837379456
+      ],
+      "note": "All episodes reached timeout at low COM height; current strict zero-angle and continuous-hold success criterion was not met."
+    }
+  }
+}

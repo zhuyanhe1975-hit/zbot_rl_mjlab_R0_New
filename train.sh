@@ -46,8 +46,38 @@ source /home/yhzhu/AI/mjlab/.venv/bin/activate
 # --action-delay [N]	动作延迟 0 到 N 步,默认 2,只在训练时生效
 # --blind-actor	actor 看不到 base_lin_vel、yaw_error
 # --deployment	以上全部
-python train.py Mjlab-Zbot-6dof-Deploy-Flat-Foot-Walking \
-    --deployment \
-    --env.scene.num-envs 8192 \
-    --agent.max-iterations 500 \
-    --env.commands.target-speed.ranges.lin-vel-x "(0.0,0.5)"
+# python train.py Mjlab-Zbot-6dof-Deploy-Flat-Foot-Walking \
+#     --deployment \
+#     --env.scene.num-envs 8192 \
+#     --agent.max-iterations 500 \
+#     --env.commands.target-speed.ranges.lin-vel-x "(0.0,0.5)"
+
+# 7、双足到蛇形的变形实验
+# python train.py Mjlab-Zbot-6dof-Transform-Biped-To-Snake \
+#   --env.scene.num-envs 8192 \
+#   --agent.max-iterations 200
+
+# 8、蛇形到双足的变形实验
+# python train.py Mjlab-Zbot-6dof-Transform-Snake-To-Biped \
+#   --env.scene.num-envs 8192 \
+#   --agent.max-iterations 1000
+
+# 9、站立目标同侧的浅弧起点 → 双脚底着地 → 双足站立
+# python train.py Mjlab-Zbot-6dof-Transform-Snake-To-Biped-Beta-Arc \
+#   --env.scene.num-envs 8192 \
+#   --agent.max-iterations 4000
+
+# 10、从头训练：3维镜像动作 + 随机roll，暂时关闭base扰动力/力矩。
+# python train.py Mjlab-Zbot-6dof-Transform-Snake-To-Biped-Beta-Robust \
+#   --env.scene.num-envs 8192 \
+#   --agent.max-iterations 2000
+
+# 11、全状态教师：36维Actor / 44维Critic，3维镜像动作，从头训练。
+# python train.py Mjlab-Zbot-6dof-Transform-Snake-To-Biped-Beta-Robust-Teacher \
+#   --env.scene.num-envs 8192 \
+#   --agent.max-iterations 200
+
+# 12、蛇足双向变形：随机蛇形/双足初态，+1站立 / -1爬下，37/45维观测。
+python train.py Mjlab-Zbot-6dof-Transform-Snake-Biped-Bidirectional \
+  --env.scene.num-envs 8192 \
+  --agent.max-iterations 600

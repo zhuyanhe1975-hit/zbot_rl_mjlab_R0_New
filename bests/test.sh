@@ -9,6 +9,10 @@ PROJECT_DIR="$(dirname "$BESTS_DIR")"
 
 task_of() {
   case "$1" in
+    transform_snake_biped_bidirectional_*) echo "Mjlab-Zbot-6dof-Transform-Snake-Biped-Bidirectional" ;;
+    transform_snake_to_biped_teacher_*) echo "Mjlab-Zbot-6dof-Transform-Snake-To-Biped-Beta-Robust-Teacher" ;;
+    transform_snake_to_biped_beta_*) echo "Mjlab-Zbot-6dof-Transform-Snake-To-Biped-Beta" ;;
+    transform_biped_to_snake_*) echo "Mjlab-Zbot-6dof-Transform-Biped-To-Snake" ;;
     deploy_walking_*) echo "Mjlab-Zbot-6dof-Deploy-Walking" ;;
     flat_foot_velocity_energy_*) echo "Mjlab-Zbot-6dof-Flat-Foot-Velocity-Energy-Walking" ;;
     omni_velocity_energy_*) echo "Mjlab-Zbot-6dof-Omni-Velocity-Energy-Walking" ;;

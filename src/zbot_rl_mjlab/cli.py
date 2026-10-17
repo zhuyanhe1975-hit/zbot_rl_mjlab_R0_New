@@ -196,6 +196,8 @@ def apply_cli(argv=None):
             "Mjlab-Zbot-6dof-Deploy-Walking"
         )
     base = tasks[chosen]
+    if not getattr(base, "supports_walking_addons", True):
+        raise CliError(f"{chosen} does not support walking add-on switches")
     new = variant(base, chosen, base.experiment_name, *build_addons(switches, options))
     # Replace the registered task with the extended one under the same task id.
     mjlab_registry._REGISTRY.pop(chosen, None)

@@ -1,0 +1,61 @@
+{
+  "source_pose_evaluation": {
+    "snake_to_biped": {
+      "episodes": 16,
+      "ever_strict_success": 12,
+      "mean_final_base_height_m": 0.21015210449695587,
+      "mean_goal_joint_error_rad": 0.089040108025074,
+      "mean_abs_joint_position_rad": 0.9969326853752136,
+      "mean_final_worst_sole_angle_deg": 23.16102409362793,
+      "mean_duration_s": 12.393750190734863,
+      "episodes_ever_above_0_23m": 16,
+      "lying_target_pose_count": 0
+    },
+    "biped_to_snake": {
+      "episodes": 16,
+      "ever_strict_success": 16,
+      "mean_final_base_height_m": 0.05248028039932251,
+      "mean_goal_joint_error_rad": 0.0032047193963080645,
+      "mean_abs_joint_position_rad": 0.0032047193963080645,
+      "mean_final_worst_sole_angle_deg": 89.97975158691406,
+      "mean_duration_s": 16.0,
+      "episodes_ever_above_0_23m": 16,
+      "lying_target_pose_count": 16
+    }
+  },
+  "source_pose_protocol": {
+    "environments": 32,
+    "episodes_per_direction": 16,
+    "seconds_per_episode": 16,
+    "seed": 42,
+    "training_failure_rules_enabled": true,
+    "lying_target_pose_count_note": "This heuristic denotes undesired lying biped shapes only for snake_to_biped; lying is the desired goal for biped_to_snake."
+  },
+  "manual_command_evaluation": {
+    "environments": 8,
+    "seed": 42,
+    "seconds_per_command": 16,
+    "stages": [
+      {
+        "command": "stand",
+        "ever_strict_success_count": 8,
+        "final_strict_success_count": 8,
+        "minimum_final_continuous_hold_seconds": 12.060086250305176
+      },
+      {
+        "command": "snake",
+        "ever_strict_success_count": 8,
+        "final_strict_success_count": 8,
+        "minimum_final_continuous_hold_seconds": 13.200112342834473
+      },
+      {
+        "command": "stand",
+        "ever_strict_success_count": 8,
+        "final_strict_success_count": 8,
+        "minimum_final_continuous_hold_seconds": 9.940037727355957
+      }
+    ],
+    "automatic_reset_count": 0,
+    "callbacks_preserve_pose_targets_and_episode_counters": true
+  }
+}

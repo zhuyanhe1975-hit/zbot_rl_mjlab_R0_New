@@ -31,6 +31,7 @@ fixed order.  A subclass never repeats its parents' edits.
 
 from dataclasses import dataclass, field
 
+from mjlab.envs import ManagerBasedRlEnvCfg
 from mjlab.managers.reward_manager import RewardTermCfg
 from mjlab.tasks.registry import register_mjlab_task
 
@@ -95,7 +96,7 @@ class Experiment:
                 chosen[type(addon)] = addon
         return sorted(chosen.values(), key=lambda addon: addon.order)
 
-    def build_env(self, play=False):
+    def build_env(self, play=False) -> ManagerBasedRlEnvCfg:
         cfg = env_cfg(play=play)
         if self.train_envs is not None and not play:
             cfg.scene.num_envs = self.train_envs

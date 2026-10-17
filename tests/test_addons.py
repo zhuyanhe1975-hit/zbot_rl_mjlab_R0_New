@@ -155,8 +155,15 @@ def test_a_subclass_replaces_a_parents_add_on_of_the_same_type_and_adds_others()
 
 
 @pytest.mark.parametrize("play", [False, True])
-@pytest.mark.parametrize("experiment", zbot_rl_mjlab.EXPERIMENTS)
-def test_every_experiment_accepts_every_add_on(experiment, play):
+@pytest.mark.parametrize(
+    "experiment",
+    [
+        experiment
+        for experiment in zbot_rl_mjlab.EXPERIMENTS
+        if getattr(experiment, "supports_walking_addons", True)
+    ],
+)
+def test_every_walking_experiment_accepts_every_add_on(experiment, play):
     cfg = build(*ad.DEPLOYMENT, base=experiment, play=play)
     actor = cfg.observations["actor"].terms
     assert not set(ad.PRIVILEGED_TERMS) & set(actor)

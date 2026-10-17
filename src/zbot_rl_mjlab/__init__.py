@@ -5,6 +5,7 @@ states only its own changes (see ``experiments/base.py``).  To add one, write th
 list it here.
 """
 
+from .experiments.bidirectional import SnakeBipedBidirectional
 from .experiments.deploy import DeployFlatFoot, DeployWalking
 from .experiments.disturbed_walking import DisturbedWalking
 from .experiments.flat_foot_disturbed import FlatFootDisturbed
@@ -12,6 +13,14 @@ from .experiments.flat_foot_velocity_energy import FlatFootVelocityEnergy
 from .experiments.flat_walking import FlatWalking
 from .experiments.in_place_stepping import PeriodicStepping
 from .experiments.omni_velocity_energy import OmniVelocityEnergy
+from .experiments.transformation import (
+    BipedToSnake,
+    SnakeToBiped,
+    SnakeToBipedArc,
+    SnakeToBipedBeta,
+    SnakeToBipedRobust,
+    SnakeToBipedTeacher,
+)
 from .experiments.velocity_energy_disturbed import VelocityEnergyDisturbed
 from .experiments.velocity_energy_tracking import VelocityEnergyTracking
 from .experiments.velocity_tracking import VelocityTracking
@@ -30,6 +39,13 @@ EXPERIMENTS = (
     DeployWalking,
     DeployFlatFoot,
     WalkingTuning,
+    BipedToSnake,
+    SnakeToBiped,
+    SnakeToBipedBeta,
+    SnakeToBipedArc,
+    SnakeToBipedRobust,
+    SnakeToBipedTeacher,
+    SnakeBipedBidirectional,
 )
 
 for experiment in EXPERIMENTS:

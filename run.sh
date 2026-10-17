@@ -1,11 +1,11 @@
 source /home/yhzhu/AI/mjlab/.venv/bin/activate
 
 # 1、按照指定频率迈步+基本平地行走
-python play.py Mjlab-Zbot-6dof-Walking \
-    --env.step-frequency-min 0.3 \
-    --env.step-frequency-max 1.0 \
-    --env.scene.num-envs 8 \
-    --checkpoint-file bests/zbot_walking/model_599.pt
+# python play.py Mjlab-Zbot-6dof-Walking \
+#     --env.step-frequency-min 0.3 \
+#     --env.step-frequency-max 1.0 \
+#     --env.scene.num-envs 8 \
+#     --checkpoint-file bests/zbot_walking/model_599.pt
 
 # 2、按照指定频率迈步+平地行走+扰动力和力矩
 # python play.py Mjlab-Zbot-6dof-Disturbed-Walking \
@@ -36,3 +36,24 @@ python play.py Mjlab-Zbot-6dof-Walking \
 #     --env.commands.target-speed.ranges.lin-vel-x "(0.1,0.4)" \
 #     --env.scene.num-envs 16 \
 #     --checkpoint-file bests/deploy_walking_2026-10-11_iter1499/model_1499.pt
+
+# 7、双足到蛇形的变形实验
+# python play.py Mjlab-Zbot-6dof-Transform-Biped-To-Snake \
+#     --env.scene.num-envs 16
+
+# 8、蛇形到双足的变形实验
+# python play.py Mjlab-Zbot-6dof-Transform-Snake-To-Biped \
+#     --env.scene.num-envs 16 \
+#     # --checkpoint-file logs/rsl_rl/zbot_transform_snake_to_biped/2026-10-17_10-36-10/model_400.pt
+
+# python play.py Mjlab-Zbot-6dof-Transform-Snake-To-Biped-Beta-Arc \
+#     --env.scene.num-envs 16 \
+
+# 10、model_2550预训练输入 + base随机扰动力/力矩，默认8192环境、2000轮。
+# python play.py Mjlab-Zbot-6dof-Transform-Snake-To-Biped-Beta-Robust-Teacher \
+#   --env.scene.num-envs 16 \
+
+# 12、蛇足双向变形：随机蛇形/双足初态，+1站立 / -1爬下，37/45维观测。
+python play.py Mjlab-Zbot-6dof-Transform-Snake-Biped-Bidirectional \
+  --env.scene.num-envs 1 \
+  --checkpoint-file logs/rsl_rl/zbot_transform_snake_biped_bidirectional/2026-10-17_18-30-25/model_500.pt

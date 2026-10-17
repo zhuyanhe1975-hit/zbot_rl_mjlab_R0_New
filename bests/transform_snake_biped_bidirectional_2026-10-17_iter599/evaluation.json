@@ -1,0 +1,2165 @@
+{
+  "checkpoint": "bests/transform_snake_biped_bidirectional_2026-10-17_iter599/model_599.pt",
+  "training_updates": 0,
+  "seed": 42,
+  "episode_seconds": 16,
+  "initial_roll_range_degrees": [
+    -180.0,
+    180.0
+  ],
+  "episodes": [
+    {
+      "environment": 0,
+      "initial_command": -1.0,
+      "initial_roll_offset_deg": 0.0,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 14.940152168273926,
+      "final_base_height_m": 0.052496545016765594,
+      "final_joint_error_mean_rad": 0.002438451163470745,
+      "final_joint_error_max_rad": 0.004072963260114193,
+      "final_worst_sole_angle_deg": 89.96575927734375,
+      "joint_positions_rad": [
+        -0.0033791856840252876,
+        0.0012208966072648764,
+        -0.0015439448179677129,
+        0.0018517484422773123,
+        -0.002561967819929123,
+        0.004072963260114193
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 1,
+      "initial_command": 1.0,
+      "initial_roll_offset_deg": -103.39645385742188,
+      "ever_strict_success": false,
+      "final_strict_success": false,
+      "duration_s": 1.5,
+      "continuous_hold_s": 0.0,
+      "final_base_height_m": 0.04627348855137825,
+      "final_joint_error_mean_rad": 0.26620912551879883,
+      "final_joint_error_max_rad": 0.6808799505233765,
+      "final_worst_sole_angle_deg": 85.75755310058594,
+      "joint_positions_rad": [
+        0.396281361579895,
+        0.7999342679977417,
+        -1.340085744857788,
+        1.3391200304031372,
+        -0.8068861365318298,
+        -0.39699944853782654
+      ],
+      "termination_reasons": [
+        "early_base_ground_contact"
+      ]
+    },
+    {
+      "environment": 2,
+      "initial_command": 1.0,
+      "initial_roll_offset_deg": 82.51190185546875,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 14.860150337219238,
+      "final_base_height_m": 0.2643758952617645,
+      "final_joint_error_mean_rad": 0.010895202867686749,
+      "final_joint_error_max_rad": 0.014971554279327393,
+      "final_worst_sole_angle_deg": 0.01978234015405178,
+      "joint_positions_rad": [
+        0.30089330673217773,
+        0.8222725987434387,
+        -2.026745080947876,
+        2.026951551437378,
+        -0.8220284581184387,
+        -0.30113112926483154
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 3,
+      "initial_command": -1.0,
+      "initial_roll_offset_deg": 0.0,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 15.240159034729004,
+      "final_base_height_m": 0.05250204727053642,
+      "final_joint_error_mean_rad": 0.002803207142278552,
+      "final_joint_error_max_rad": 0.005996599327772856,
+      "final_worst_sole_angle_deg": 89.96842193603516,
+      "joint_positions_rad": [
+        0.005996599327772856,
+        -0.004152268171310425,
+        0.0019427945371717215,
+        -0.00018984895723406225,
+        0.0012693351600319147,
+        -0.0032683953177183867
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 4,
+      "initial_command": 1.0,
+      "initial_roll_offset_deg": 91.79248809814453,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 14.920151710510254,
+      "final_base_height_m": 0.26437586545944214,
+      "final_joint_error_mean_rad": 0.010899156332015991,
+      "final_joint_error_max_rad": 0.015018165111541748,
+      "final_worst_sole_angle_deg": 0.01978234015405178,
+      "joint_positions_rad": [
+        0.3009123206138611,
+        0.8222800493240356,
+        -2.026761770248413,
+        2.026931047439575,
+        -0.8219818472862244,
+        -0.3011237382888794
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 5,
+      "initial_command": -1.0,
+      "initial_roll_offset_deg": 0.0,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 15.140156745910645,
+      "final_base_height_m": 0.052496109157800674,
+      "final_joint_error_mean_rad": 0.002432428766041994,
+      "final_joint_error_max_rad": 0.004073370713740587,
+      "final_worst_sole_angle_deg": 89.96586608886719,
+      "joint_positions_rad": [
+        -0.0033837929368019104,
+        0.0012162856291979551,
+        -0.0015245428076013923,
+        0.0018336003413423896,
+        -0.0025629799347370863,
+        0.004073370713740587
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 6,
+      "initial_command": 1.0,
+      "initial_roll_offset_deg": 154.00392150878906,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 13.980130195617676,
+      "final_base_height_m": 0.2643749713897705,
+      "final_joint_error_mean_rad": 0.010876904241740704,
+      "final_joint_error_max_rad": 0.01497882604598999,
+      "final_worst_sole_angle_deg": 0.02797645516693592,
+      "joint_positions_rad": [
+        0.30092746019363403,
+        0.8223006725311279,
+        -2.0267322063446045,
+        2.0269274711608887,
+        -0.8220211863517761,
+        -0.30114901065826416
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 7,
+      "initial_command": -1.0,
+      "initial_roll_offset_deg": 0.0,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 15.240159034729004,
+      "final_base_height_m": 0.05249246582388878,
+      "final_joint_error_mean_rad": 0.0015773784834891558,
+      "final_joint_error_max_rad": 0.0038352739065885544,
+      "final_worst_sole_angle_deg": 89.97648620605469,
+      "joint_positions_rad": [
+        0.0006563912029378116,
+        -0.0028533777222037315,
+        0.0009538896265439689,
+        -0.0006030792719684541,
+        0.0038352739065885544,
+        -0.0005622592871077359
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 8,
+      "initial_command": -1.0,
+      "initial_roll_offset_deg": 0.0,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 15.240159034729004,
+      "final_base_height_m": 0.05245715007185936,
+      "final_joint_error_mean_rad": 0.0016901217168197036,
+      "final_joint_error_max_rad": 0.002390592824667692,
+      "final_worst_sole_angle_deg": 89.9999008178711,
+      "joint_positions_rad": [
+        -0.0017556450329720974,
+        -0.002390592824667692,
+        0.0010642212582752109,
+        -0.0008237891015596688,
+        0.002053044503554702,
+        0.0020534368231892586
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 9,
+      "initial_command": -1.0,
+      "initial_roll_offset_deg": 0.0,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 15.220158576965332,
+      "final_base_height_m": 0.05249576270580292,
+      "final_joint_error_mean_rad": 0.0016578915528953075,
+      "final_joint_error_max_rad": 0.0036926984321326017,
+      "final_worst_sole_angle_deg": 89.97530364990234,
+      "joint_positions_rad": [
+        0.0007910189451649785,
+        -0.002758848015218973,
+        0.0011281199986115098,
+        -0.0008159565040841699,
+        0.0036926984321326017,
+        -0.0007607075967825949
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 10,
+      "initial_command": -1.0,
+      "initial_roll_offset_deg": 0.0,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 14.900151252746582,
+      "final_base_height_m": 0.05249658226966858,
+      "final_joint_error_mean_rad": 0.002439872594550252,
+      "final_joint_error_max_rad": 0.004076903220266104,
+      "final_worst_sole_angle_deg": 89.96576690673828,
+      "joint_positions_rad": [
+        -0.003382737748324871,
+        0.0012257955968379974,
+        -0.001539490302093327,
+        0.0018435859819874167,
+        -0.002570722484961152,
+        0.004076903220266104
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 11,
+      "initial_command": 1.0,
+      "initial_roll_offset_deg": -90.30899810791016,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 14.66014575958252,
+      "final_base_height_m": 0.2643764615058899,
+      "final_joint_error_mean_rad": 0.010905961506068707,
+      "final_joint_error_max_rad": 0.014995872974395752,
+      "final_worst_sole_angle_deg": 0.02797645516693592,
+      "joint_positions_rad": [
+        0.3008630573749542,
+        0.8222395777702332,
+        -2.026746988296509,
+        2.026966094970703,
+        -0.8220041394233704,
+        -0.30117061734199524
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 12,
+      "initial_command": 1.0,
+      "initial_roll_offset_deg": 154.85841369628906,
+      "ever_strict_success": false,
+      "final_strict_success": false,
+      "duration_s": 1.4600000381469727,
+      "continuous_hold_s": 0.0,
+      "final_base_height_m": 0.05208283290266991,
+      "final_joint_error_mean_rad": 0.29035812616348267,
+      "final_joint_error_max_rad": 0.38892292976379395,
+      "final_worst_sole_angle_deg": 110.38706970214844,
+      "joint_positions_rad": [
+        0.0808805599808693,
+        0.5748759508132935,
+        -2.4089229106903076,
+        2.3655827045440674,
+        -0.5542599558830261,
+        -0.0803404375910759
+      ],
+      "termination_reasons": [
+        "fallen_after_standing",
+        "early_base_ground_contact"
+      ]
+    },
+    {
+      "environment": 13,
+      "initial_command": -1.0,
+      "initial_roll_offset_deg": 0.0,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 15.140156745910645,
+      "final_base_height_m": 0.05244804918766022,
+      "final_joint_error_mean_rad": 0.003083079820498824,
+      "final_joint_error_max_rad": 0.00571751082316041,
+      "final_worst_sole_angle_deg": 89.9596939086914,
+      "joint_positions_rad": [
+        0.000967710220720619,
+        -0.005379560403525829,
+        -0.0026394231244921684,
+        0.0028426526114344597,
+        0.00571751082316041,
+        -0.0009516210993751884
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 14,
+      "initial_command": -1.0,
+      "initial_roll_offset_deg": 0.0,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 14.860150337219238,
+      "final_base_height_m": 0.05244696885347366,
+      "final_joint_error_mean_rad": 0.00336863799020648,
+      "final_joint_error_max_rad": 0.006066531874239445,
+      "final_worst_sole_angle_deg": 89.94775390625,
+      "joint_positions_rad": [
+        0.001469592098146677,
+        -0.005764544475823641,
+        -0.0026099239476025105,
+        0.0028356583788990974,
+        0.006066531874239445,
+        -0.0014655765844509006
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 15,
+      "initial_command": -1.0,
+      "initial_roll_offset_deg": 0.0,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 14.88015079498291,
+      "final_base_height_m": 0.052496567368507385,
+      "final_joint_error_mean_rad": 0.0024396402295678854,
+      "final_joint_error_max_rad": 0.004071836359798908,
+      "final_worst_sole_angle_deg": 89.96570587158203,
+      "joint_positions_rad": [
+        -0.0033833046909421682,
+        0.0012267407728359103,
+        -0.0015470783691853285,
+        0.001844512764364481,
+        -0.0025643676053732634,
+        0.004071836359798908
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 16,
+      "initial_command": 1.0,
+      "initial_roll_offset_deg": -130.18882751464844,
+      "ever_strict_success": false,
+      "final_strict_success": false,
+      "duration_s": 1.5,
+      "continuous_hold_s": 0.0,
+      "final_base_height_m": 0.04889854043722153,
+      "final_joint_error_mean_rad": 0.45967888832092285,
+      "final_joint_error_max_rad": 0.9533523321151733,
+      "final_worst_sole_angle_deg": 87.78314971923828,
+      "joint_positions_rad": [
+        0.3870643377304077,
+        0.48399171233177185,
+        -1.0772485733032227,
+        1.0666476488113403,
+        -0.4786246418952942,
+        -0.3875216543674469
+      ],
+      "termination_reasons": [
+        "fallen_after_standing"
+      ]
+    },
+    {
+      "environment": 17,
+      "initial_command": -1.0,
+      "initial_roll_offset_deg": 0.0,
+      "ever_strict_success": true,
+      "final_strict_success": false,
+      "duration_s": 16.0,
+      "continuous_hold_s": 0.0,
+      "final_base_height_m": 0.05247311294078827,
+      "final_joint_error_mean_rad": 0.005229094531387091,
+      "final_joint_error_max_rad": 0.009453574195504189,
+      "final_worst_sole_angle_deg": 90.00749206542969,
+      "joint_positions_rad": [
+        0.0025439271703362465,
+        -0.003779361955821514,
+        0.009453574195504189,
+        -0.009304783307015896,
+        0.003757959231734276,
+        -0.002534960862249136
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 18,
+      "initial_command": 1.0,
+      "initial_roll_offset_deg": 33.03257751464844,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 14.740147590637207,
+      "final_base_height_m": 0.264375776052475,
+      "final_joint_error_mean_rad": 0.0109119713306427,
+      "final_joint_error_max_rad": 0.015029370784759521,
+      "final_worst_sole_angle_deg": 0.01978234015405178,
+      "joint_positions_rad": [
+        0.3009040951728821,
+        0.8222476840019226,
+        -2.0267841815948486,
+        2.0269553661346436,
+        -0.8219706416130066,
+        -0.30114537477493286
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 19,
+      "initial_command": 1.0,
+      "initial_roll_offset_deg": 133.37347412109375,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 14.680146217346191,
+      "final_base_height_m": 0.26437512040138245,
+      "final_joint_error_mean_rad": 0.010881811380386353,
+      "final_joint_error_max_rad": 0.014998555183410645,
+      "final_worst_sole_angle_deg": 0.02797645516693592,
+      "joint_positions_rad": [
+        0.30092301964759827,
+        0.8223084807395935,
+        -2.026752233505249,
+        2.0269269943237305,
+        -0.8220014572143555,
+        -0.3011554777622223
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 20,
+      "initial_command": 1.0,
+      "initial_roll_offset_deg": -32.91141128540039,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 15.080155372619629,
+      "final_base_height_m": 0.264375239610672,
+      "final_joint_error_mean_rad": 0.01089059840887785,
+      "final_joint_error_max_rad": 0.015021741390228271,
+      "final_worst_sole_angle_deg": 0.02797645516693592,
+      "joint_positions_rad": [
+        0.30092859268188477,
+        0.8222994208335876,
+        -2.0267677307128906,
+        2.0269336700439453,
+        -0.8219782710075378,
+        -0.3011516034603119
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 21,
+      "initial_command": 1.0,
+      "initial_roll_offset_deg": 100.44010162353516,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 14.760148048400879,
+      "final_base_height_m": 0.26437488198280334,
+      "final_joint_error_mean_rad": 0.010878275148570538,
+      "final_joint_error_max_rad": 0.014989197254180908,
+      "final_worst_sole_angle_deg": 0.01978234015405178,
+      "joint_positions_rad": [
+        0.3009287416934967,
+        0.8222979307174683,
+        -2.0267539024353027,
+        2.02691650390625,
+        -0.8220108151435852,
+        -0.30116334557533264
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 22,
+      "initial_command": -1.0,
+      "initial_roll_offset_deg": 0.0,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 15.120156288146973,
+      "final_base_height_m": 0.05246563255786896,
+      "final_joint_error_mean_rad": 0.0022861079778522253,
+      "final_joint_error_max_rad": 0.004988036584109068,
+      "final_worst_sole_angle_deg": 89.99140167236328,
+      "joint_positions_rad": [
+        -0.004988036584109068,
+        0.0014962329296395183,
+        0.00033839320531114936,
+        -0.0002613122051116079,
+        -0.0016808276996016502,
+        0.004951844457536936
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 23,
+      "initial_command": 1.0,
+      "initial_roll_offset_deg": -119.80354309082031,
+      "ever_strict_success": false,
+      "final_strict_success": false,
+      "duration_s": 1.840000033378601,
+      "continuous_hold_s": 0.0,
+      "final_base_height_m": 0.042673125863075256,
+      "final_joint_error_mean_rad": 0.2776496112346649,
+      "final_joint_error_max_rad": 0.7121047973632812,
+      "final_worst_sole_angle_deg": 86.36205291748047,
+      "joint_positions_rad": [
+        0.4145219027996063,
+        0.8102023601531982,
+        -1.313628911972046,
+        1.3078951835632324,
+        -0.820245087146759,
+        -0.4133473336696625
+      ],
+      "termination_reasons": [
+        "early_base_ground_contact"
+      ]
+    },
+    {
+      "environment": 24,
+      "initial_command": 1.0,
+      "initial_roll_offset_deg": -59.60077667236328,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 14.700146675109863,
+      "final_base_height_m": 0.2643747925758362,
+      "final_joint_error_mean_rad": 0.010903368704020977,
+      "final_joint_error_max_rad": 0.015031814575195312,
+      "final_worst_sole_angle_deg": 0.02797645516693592,
+      "joint_positions_rad": [
+        0.3009183406829834,
+        0.8222879767417908,
+        -2.026784896850586,
+        2.0269463062286377,
+        -0.8219681978225708,
+        -0.3011365532875061
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 25,
+      "initial_command": -1.0,
+      "initial_roll_offset_deg": 0.0,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 3.239997625350952,
+      "final_base_height_m": 0.052474163472652435,
+      "final_joint_error_mean_rad": 0.0058851647190749645,
+      "final_joint_error_max_rad": 0.008332239463925362,
+      "final_worst_sole_angle_deg": 90.00296020507812,
+      "joint_positions_rad": [
+        -0.004496915731579065,
+        -0.004955593030899763,
+        0.008332239463925362,
+        -0.008149721659719944,
+        0.004856387618929148,
+        0.004520128481090069
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 26,
+      "initial_command": 1.0,
+      "initial_roll_offset_deg": -139.11175537109375,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 14.060132026672363,
+      "final_base_height_m": 0.2643757164478302,
+      "final_joint_error_mean_rad": 0.010908792726695538,
+      "final_joint_error_max_rad": 0.015040278434753418,
+      "final_worst_sole_angle_deg": 0.01978234015405178,
+      "joint_positions_rad": [
+        0.3009259104728699,
+        0.8222862482070923,
+        -2.026778221130371,
+        2.0269672870635986,
+        -0.8219597339630127,
+        -0.30112093687057495
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 27,
+      "initial_command": 1.0,
+      "initial_roll_offset_deg": 176.04331970214844,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 14.520142555236816,
+      "final_base_height_m": 0.2643766403198242,
+      "final_joint_error_mean_rad": 0.010923296213150024,
+      "final_joint_error_max_rad": 0.0150529146194458,
+      "final_worst_sole_angle_deg": 0.02797645516693592,
+      "joint_positions_rad": [
+        0.30089226365089417,
+        0.8222481608390808,
+        -2.026764154434204,
+        2.026973247528076,
+        -0.8219470977783203,
+        -0.301110178232193
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 28,
+      "initial_command": -1.0,
+      "initial_roll_offset_deg": 0.0,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 14.920151710510254,
+      "final_base_height_m": 0.05249664559960365,
+      "final_joint_error_mean_rad": 0.00244008912704885,
+      "final_joint_error_max_rad": 0.004079511854797602,
+      "final_worst_sole_angle_deg": 89.96575164794922,
+      "joint_positions_rad": [
+        -0.0033809987362474203,
+        0.0012176975142210722,
+        -0.0015451197978109121,
+        0.001846199156716466,
+        -0.0025710072368383408,
+        0.004079511854797602
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 29,
+      "initial_command": -1.0,
+      "initial_roll_offset_deg": 0.0,
+      "ever_strict_success": true,
+      "final_strict_success": false,
+      "duration_s": 16.0,
+      "continuous_hold_s": 1.7199989557266235,
+      "final_base_height_m": 0.052473343908786774,
+      "final_joint_error_mean_rad": 0.005275651812553406,
+      "final_joint_error_max_rad": 0.006236113607883453,
+      "final_worst_sole_angle_deg": 90.00814819335938,
+      "joint_positions_rad": [
+        0.0042253718711435795,
+        -0.005530497990548611,
+        0.006236113607883453,
+        -0.006049888674169779,
+        0.005404153373092413,
+        -0.004207886755466461
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 30,
+      "initial_command": 1.0,
+      "initial_roll_offset_deg": 29.307815551757812,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 14.960152626037598,
+      "final_base_height_m": 0.2643742263317108,
+      "final_joint_error_mean_rad": 0.010870641097426414,
+      "final_joint_error_max_rad": 0.014954030513763428,
+      "final_worst_sole_angle_deg": 0.01978234015405178,
+      "joint_positions_rad": [
+        0.3009374439716339,
+        0.8223099112510681,
+        -2.0267579555511475,
+        2.026925802230835,
+        -0.8220459818840027,
+        -0.3011666536331177
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    },
+    {
+      "environment": 31,
+      "initial_command": -1.0,
+      "initial_roll_offset_deg": 0.0,
+      "ever_strict_success": true,
+      "final_strict_success": true,
+      "duration_s": 16.0,
+      "continuous_hold_s": 3.379997491836548,
+      "final_base_height_m": 0.052473317831754684,
+      "final_joint_error_mean_rad": 0.006228692829608917,
+      "final_joint_error_max_rad": 0.006554583553224802,
+      "final_worst_sole_angle_deg": 90.00962829589844,
+      "joint_positions_rad": [
+        0.006554583553224802,
+        -0.005786393769085407,
+        0.006428925320506096,
+        -0.006293371319770813,
+        0.005772150121629238,
+        -0.006536732893437147
+      ],
+      "termination_reasons": [
+        "time_out"
+      ]
+    }
+  ],
+  "trace_env_0": [
+    {
+      "time_s": 0.02,
+      "base_height_m": 0.2638983130455017,
+      "joint_error_rad": 1.0448532104492188,
+      "sole_angles_deg": [
+        0.34321129322052,
+        0.36045199632644653
+      ],
+      "joint_positions_rad": [
+        0.2934678792953491,
+        0.8296942114830017,
+        -2.011638879776001,
+        2.0118813514709473,
+        -0.8293992877006531,
+        -0.2930377721786499
+      ]
+    },
+    {
+      "time_s": 0.22,
+      "base_height_m": 0.24631084501743317,
+      "joint_error_rad": 0.5171145796775818,
+      "sole_angles_deg": [
+        28.905336380004883,
+        31.24283218383789
+      ],
+      "joint_positions_rad": [
+        -0.17079341411590576,
+        0.13969002664089203,
+        -1.275593876838684,
+        1.2658976316452026,
+        -0.10835510492324829,
+        0.14235742390155792
+      ]
+    },
+    {
+      "time_s": 0.42,
+      "base_height_m": 0.052103232592344284,
+      "joint_error_rad": 0.06644143909215927,
+      "sole_angles_deg": [
+        90.69448852539062,
+        90.34038543701172
+      ],
+      "joint_positions_rad": [
+        0.03860849514603615,
+        -0.10810010135173798,
+        -0.05346319079399109,
+        0.059795960783958435,
+        0.09983620792627335,
+        -0.038844671100378036
+      ]
+    },
+    {
+      "time_s": 0.62,
+      "base_height_m": 0.05509532243013382,
+      "joint_error_rad": 0.05387583374977112,
+      "sole_angles_deg": [
+        89.04951477050781,
+        89.11466979980469
+      ],
+      "joint_positions_rad": [
+        0.0527934692800045,
+        0.02944878861308098,
+        0.07988482713699341,
+        -0.07861487567424774,
+        -0.030087590217590332,
+        -0.05242546647787094
+      ]
+    },
+    {
+      "time_s": 0.8200000000000001,
+      "base_height_m": 0.05245130509138107,
+      "joint_error_rad": 0.011215534061193466,
+      "sole_angles_deg": [
+        90.01166534423828,
+        90.01078033447266
+      ],
+      "joint_positions_rad": [
+        -0.010508955456316471,
+        0.003739094128832221,
+        0.019296428188681602,
+        -0.01892112009227276,
+        -0.00405782600864768,
+        0.010769782587885857
+      ]
+    },
+    {
+      "time_s": 1.02,
+      "base_height_m": 0.052450016140937805,
+      "joint_error_rad": 0.007570250891149044,
+      "sole_angles_deg": [
+        89.91433715820312,
+        89.90169525146484
+      ],
+      "joint_positions_rad": [
+        -0.007300575263798237,
+        0.009424643591046333,
+        0.005537151824682951,
+        -0.00565843190997839,
+        -0.010071034543216228,
+        0.00742966728284955
+      ]
+    },
+    {
+      "time_s": 1.22,
+      "base_height_m": 0.0524967722594738,
+      "joint_error_rad": 0.0037299017421901226,
+      "sole_angles_deg": [
+        89.93994903564453,
+        89.92620849609375
+      ],
+      "joint_positions_rad": [
+        -0.002816848922520876,
+        0.00599641865119338,
+        0.0022935804445296526,
+        -0.002231045626103878,
+        -0.006106581538915634,
+        0.0029349355027079582
+      ]
+    },
+    {
+      "time_s": 1.42,
+      "base_height_m": 0.052484411746263504,
+      "joint_error_rad": 0.0015729465521872044,
+      "sole_angles_deg": [
+        89.9683837890625,
+        89.95232391357422
+      ],
+      "joint_positions_rad": [
+        -0.0016560497460886836,
+        0.0023209035862237215,
+        0.00015079017612151802,
+        5.8583696954883635e-05,
+        -0.003185585606843233,
+        0.0020657661370933056
+      ]
+    },
+    {
+      "time_s": 1.62,
+      "base_height_m": 0.05249752476811409,
+      "joint_error_rad": 0.001954595558345318,
+      "sole_angles_deg": [
+        89.9639892578125,
+        89.94938659667969
+      ],
+      "joint_positions_rad": [
+        -0.002570758806541562,
+        0.0014328088145703077,
+        -0.0011368578998371959,
+        0.0012932901736348867,
+        -0.0023213205859065056,
+        0.0029725374188274145
+      ]
+    },
+    {
+      "time_s": 1.82,
+      "base_height_m": 0.052512381225824356,
+      "joint_error_rad": 0.002128535183146596,
+      "sole_angles_deg": [
+        89.9709701538086,
+        89.95579528808594
+      ],
+      "joint_positions_rad": [
+        -0.0017165011959150434,
+        0.0007664059521630406,
+        -0.002734554000198841,
+        0.003113549668341875,
+        -0.002096679760143161,
+        0.002343519823625684
+      ]
+    },
+    {
+      "time_s": 2.02,
+      "base_height_m": 0.05250224843621254,
+      "joint_error_rad": 0.0026042673271149397,
+      "sole_angles_deg": [
+        89.96372985839844,
+        89.94768524169922
+      ],
+      "joint_positions_rad": [
+        -0.0034993006847798824,
+        0.0012751825852319598,
+        -0.0018608055543154478,
+        0.002077116398140788,
+        -0.0027028245385736227,
+        0.004210374318063259
+      ]
+    },
+    {
+      "time_s": 2.22,
+      "base_height_m": 0.05249848961830139,
+      "joint_error_rad": 0.00250334944576025,
+      "sole_angles_deg": [
+        89.96463775634766,
+        89.94877624511719
+      ],
+      "joint_positions_rad": [
+        -0.0033350621815770864,
+        0.0014151670038700104,
+        -0.0015899519203230739,
+        0.0018593777203932405,
+        -0.0027554412372410297,
+        0.004065097309648991
+      ]
+    },
+    {
+      "time_s": 2.42,
+      "base_height_m": 0.05249828100204468,
+      "joint_error_rad": 0.00246834778226912,
+      "sole_angles_deg": [
+        89.96538543701172,
+        89.9496078491211
+      ],
+      "joint_positions_rad": [
+        -0.0033327860292047262,
+        0.0012725979322567582,
+        -0.0016332203522324562,
+        0.0019012459088116884,
+        -0.00262128422036767,
+        0.004048951901495457
+      ]
+    },
+    {
+      "time_s": 2.62,
+      "base_height_m": 0.05249729007482529,
+      "joint_error_rad": 0.0024598645977675915,
+      "sole_angles_deg": [
+        89.96549987792969,
+        89.94966125488281
+      ],
+      "joint_positions_rad": [
+        -0.0033613182604312897,
+        0.0012616986641660333,
+        -0.0015808019088581204,
+        0.001865018275566399,
+        -0.0026128245517611504,
+        0.004077525809407234
+      ]
+    },
+    {
+      "time_s": 2.82,
+      "base_height_m": 0.052497029304504395,
+      "joint_error_rad": 0.0024469587951898575,
+      "sole_angles_deg": [
+        89.9657211303711,
+        89.94988250732422
+      ],
+      "joint_positions_rad": [
+        -0.0033559456933289766,
+        0.0012343322159722447,
+        -0.0015672907466068864,
+        0.0018607372185215354,
+        -0.0025909782852977514,
+        0.0040724691934883595
+      ]
+    },
+    {
+      "time_s": 3.02,
+      "base_height_m": 0.05249670147895813,
+      "joint_error_rad": 0.002444775542244315,
+      "sole_angles_deg": [
+        89.96569061279297,
+        89.94998931884766
+      ],
+      "joint_positions_rad": [
+        -0.0033738145139068365,
+        0.0012294095940887928,
+        -0.001554164569824934,
+        0.0018584351055324078,
+        -0.0025776452384889126,
+        0.004075183998793364
+      ]
+    },
+    {
+      "time_s": 3.22,
+      "base_height_m": 0.052496686577796936,
+      "joint_error_rad": 0.0024432665668427944,
+      "sole_angles_deg": [
+        89.9656982421875,
+        89.95003509521484
+      ],
+      "joint_positions_rad": [
+        -0.003380623646080494,
+        0.0012291083112359047,
+        -0.0015485683688893914,
+        0.0018519292352721095,
+        -0.002571223769336939,
+        0.004078144673258066
+      ]
+    },
+    {
+      "time_s": 3.42,
+      "base_height_m": 0.05249667540192604,
+      "joint_error_rad": 0.002440292853862047,
+      "sole_angles_deg": [
+        89.96573638916016,
+        89.95011901855469
+      ],
+      "joint_positions_rad": [
+        -0.003377187065780163,
+        0.0012291923630982637,
+        -0.0015449554193764925,
+        0.001850941451266408,
+        -0.0025668765883892775,
+        0.004072604235261679
+      ]
+    },
+    {
+      "time_s": 3.62,
+      "base_height_m": 0.05249658599495888,
+      "joint_error_rad": 0.0024392600171267986,
+      "sole_angles_deg": [
+        89.96573638916016,
+        89.95011901855469
+      ],
+      "joint_positions_rad": [
+        -0.0033774012699723244,
+        0.001227334258146584,
+        -0.0015435658860951662,
+        0.0018487067427486181,
+        -0.0025663040578365326,
+        0.004072247538715601
+      ]
+    },
+    {
+      "time_s": 3.8200000000000003,
+      "base_height_m": 0.05249667167663574,
+      "joint_error_rad": 0.0024393931962549686,
+      "sole_angles_deg": [
+        89.96576690673828,
+        89.95011901855469
+      ],
+      "joint_positions_rad": [
+        -0.0033780690282583237,
+        0.0012237458722665906,
+        -0.0015486108604818583,
+        0.0018536184215918183,
+        -0.0025606206618249416,
+        0.004071694333106279
+      ]
+    },
+    {
+      "time_s": 4.0200000000000005,
+      "base_height_m": 0.05249656364321709,
+      "joint_error_rad": 0.002440027892589569,
+      "sole_angles_deg": [
+        89.96575927734375,
+        89.95008850097656
+      ],
+      "joint_positions_rad": [
+        -0.003378209425136447,
+        0.0012242094380781054,
+        -0.0015456289984285831,
+        0.001849813386797905,
+        -0.0025660304818302393,
+        0.004076274577528238
+      ]
+    },
+    {
+      "time_s": 4.22,
+      "base_height_m": 0.052496667951345444,
+      "joint_error_rad": 0.0024407440796494484,
+      "sole_angles_deg": [
+        89.96571350097656,
+        89.95011138916016
+      ],
+      "joint_positions_rad": [
+        -0.0033815905917435884,
+        0.0012266444973647594,
+        -0.0015461856964975595,
+        0.0018521652091294527,
+        -0.002562576439231634,
+        0.004075301811099052
+      ]
+    },
+    {
+      "time_s": 4.42,
+      "base_height_m": 0.052496638149023056,
+      "joint_error_rad": 0.0024393813218921423,
+      "sole_angles_deg": [
+        89.96576690673828,
+        89.95011901855469
+      ],
+      "joint_positions_rad": [
+        -0.0033791647292673588,
+        0.0012245075777173042,
+        -0.0015475654508918524,
+        0.0018517919816076756,
+        -0.0025613324251025915,
+        0.004071925301104784
+      ]
+    },
+    {
+      "time_s": 4.62,
+      "base_height_m": 0.05249654874205589,
+      "joint_error_rad": 0.0024387098383158445,
+      "sole_angles_deg": [
+        89.96576690673828,
+        89.95014190673828
+      ],
+      "joint_positions_rad": [
+        -0.003379783360287547,
+        0.0012284691911190748,
+        -0.0015427175676450133,
+        0.0018484432948753238,
+        -0.0025616411585360765,
+        0.004071203991770744
+      ]
+    },
+    {
+      "time_s": 4.82,
+      "base_height_m": 0.052496541291475296,
+      "joint_error_rad": 0.00243982020765543,
+      "sole_angles_deg": [
+        89.96575927734375,
+        89.95010375976562
+      ],
+      "joint_positions_rad": [
+        -0.003379616653546691,
+        0.001223405939526856,
+        -0.0015460439026355743,
+        0.0018497955752536654,
+        -0.002563134767115116,
+        0.004076923709362745
+      ]
+    },
+    {
+      "time_s": 5.0200000000000005,
+      "base_height_m": 0.05249663442373276,
+      "joint_error_rad": 0.00244138203561306,
+      "sole_angles_deg": [
+        89.96570587158203,
+        89.95010375976562
+      ],
+      "joint_positions_rad": [
+        -0.0033856616355478764,
+        0.001227229950018227,
+        -0.0015431917272508144,
+        0.0018504306208342314,
+        -0.0025622746907174587,
+        0.004079503007233143
+      ]
+    },
+    {
+      "time_s": 5.22,
+      "base_height_m": 0.052496492862701416,
+      "joint_error_rad": 0.0024390663020312786,
+      "sole_angles_deg": [
+        89.96576690673828,
+        89.95013427734375
+      ],
+      "joint_positions_rad": [
+        -0.003379140282049775,
+        0.001223297673277557,
+        -0.0015445457538589835,
+        0.0018519348232075572,
+        -0.0025613161269575357,
+        0.004074161872267723
+      ]
+    },
+    {
+      "time_s": 5.42,
+      "base_height_m": 0.05249650031328201,
+      "joint_error_rad": 0.002438498428091407,
+      "sole_angles_deg": [
+        89.96576690673828,
+        89.95012664794922
+      ],
+      "joint_positions_rad": [
+        -0.0033769344445317984,
+        0.0012207363033667207,
+        -0.0015458008274435997,
+        0.0018502121092751622,
+        -0.002563656074926257,
+        0.004073650576174259
+      ]
+    },
+    {
+      "time_s": 5.62,
+      "base_height_m": 0.05249648913741112,
+      "joint_error_rad": 0.0024382651317864656,
+      "sole_angles_deg": [
+        89.96578979492188,
+        89.95011901855469
+      ],
+      "joint_positions_rad": [
+        -0.003375943982973695,
+        0.0012254152679815888,
+        -0.001539928955025971,
+        0.0018478857818990946,
+        -0.0025653927586972713,
+        0.004075023345649242
+      ]
+    },
+    {
+      "time_s": 5.82,
+      "base_height_m": 0.052496492862701416,
+      "joint_error_rad": 0.0024392204359173775,
+      "sole_angles_deg": [
+        89.96575164794922,
+        89.95013427734375
+      ],
+      "joint_positions_rad": [
+        -0.0033787123393267393,
+        0.0012255081674084067,
+        -0.0015415418893098831,
+        0.0018501696176826954,
+        -0.0025648465380072594,
+        0.004074543248862028
+      ]
+    },
+    {
+      "time_s": 6.0200000000000005,
+      "base_height_m": 0.05249657481908798,
+      "joint_error_rad": 0.0024397317320108414,
+      "sole_angles_deg": [
+        89.96574401855469,
+        89.95010375976562
+      ],
+      "joint_positions_rad": [
+        -0.0033804464619606733,
+        0.0012249961728230119,
+        -0.0015441402792930603,
+        0.0018525113118812442,
+        -0.0025621119420975447,
+        0.004074183292686939
+      ]
+    },
+    {
+      "time_s": 6.22,
+      "base_height_m": 0.05249654874205589,
+      "joint_error_rad": 0.00243867258541286,
+      "sole_angles_deg": [
+        89.96577453613281,
+        89.95012664794922
+      ],
+      "joint_positions_rad": [
+        -0.003379046218469739,
+        0.0012254002504050732,
+        -0.0015442162984982133,
+        0.0018498525023460388,
+        -0.002562886569648981,
+        0.004070633091032505
+      ]
+    },
+    {
+      "time_s": 6.42,
+      "base_height_m": 0.052496492862701416,
+      "joint_error_rad": 0.002439287956804037,
+      "sole_angles_deg": [
+        89.96577453613281,
+        89.95010375976562
+      ],
+      "joint_positions_rad": [
+        -0.0033785253763198853,
+        0.0012217210605740547,
+        -0.0015457910485565662,
+        0.0018495474942028522,
+        -0.0025645375717431307,
+        0.004075605422258377
+      ]
+    },
+    {
+      "time_s": 6.62,
+      "base_height_m": 0.052496518939733505,
+      "joint_error_rad": 0.0024387433659285307,
+      "sole_angles_deg": [
+        89.96577453613281,
+        89.95013427734375
+      ],
+      "joint_positions_rad": [
+        -0.0033793554175645113,
+        0.0012265818659216166,
+        -0.001541051547974348,
+        0.0018489923095330596,
+        -0.0025634521152824163,
+        0.004073026590049267
+      ]
+    },
+    {
+      "time_s": 6.82,
+      "base_height_m": 0.05249668285250664,
+      "joint_error_rad": 0.0024400963447988033,
+      "sole_angles_deg": [
+        89.96572875976562,
+        89.95011901855469
+      ],
+      "joint_positions_rad": [
+        -0.0033802539110183716,
+        0.0012252237647771835,
+        -0.0015457668341696262,
+        0.001850228407420218,
+        -0.002564304508268833,
+        0.004074799362570047
+      ]
+    },
+    {
+      "time_s": 7.0200000000000005,
+      "base_height_m": 0.05249662697315216,
+      "joint_error_rad": 0.0024395810905843973,
+      "sole_angles_deg": [
+        89.96575927734375,
+        89.95011138916016
+      ],
+      "joint_positions_rad": [
+        -0.0033786152489483356,
+        0.0012238493654876947,
+        -0.0015480129513889551,
+        0.0018493625102564692,
+        -0.0025631850585341454,
+        0.004074460826814175
+      ]
+    },
+    {
+      "time_s": 7.22,
+      "base_height_m": 0.052496537566185,
+      "joint_error_rad": 0.002440962940454483,
+      "sole_angles_deg": [
+        89.96575927734375,
+        89.95010375976562
+      ],
+      "joint_positions_rad": [
+        -0.003382546128705144,
+        0.001225499203428626,
+        -0.001543947495520115,
+        0.001847899635322392,
+        -0.0025669110473245382,
+        0.004078973084688187
+      ]
+    },
+    {
+      "time_s": 7.42,
+      "base_height_m": 0.0524965263903141,
+      "joint_error_rad": 0.002440763870254159,
+      "sole_angles_deg": [
+        89.96573638916016,
+        89.95008850097656
+      ],
+      "joint_positions_rad": [
+        -0.003380873706191778,
+        0.0012235899921506643,
+        -0.0015453292289748788,
+        0.0018507157219573855,
+        -0.0025660796090960503,
+        0.004077994730323553
+      ]
+    },
+    {
+      "time_s": 7.62,
+      "base_height_m": 0.052496541291475296,
+      "joint_error_rad": 0.002440951531752944,
+      "sole_angles_deg": [
+        89.96574401855469,
+        89.95010375976562
+      ],
+      "joint_positions_rad": [
+        -0.003384087234735489,
+        0.0012274341424927115,
+        -0.0015432726358994842,
+        0.0018483356107026339,
+        -0.0025661999825388193,
+        0.004076378885656595
+      ]
+    },
+    {
+      "time_s": 7.82,
+      "base_height_m": 0.05249642953276634,
+      "joint_error_rad": 0.0024399482645094395,
+      "sole_angles_deg": [
+        89.96578216552734,
+        89.9500961303711
+      ],
+      "joint_positions_rad": [
+        -0.0033812883775681257,
+        0.0012271517189219594,
+        -0.0015425713500007987,
+        0.0018478622660040855,
+        -0.002566259354352951,
+        0.004074556287378073
+      ]
+    },
+    {
+      "time_s": 8.02,
+      "base_height_m": 0.05249658226966858,
+      "joint_error_rad": 0.0024402947165071964,
+      "sole_angles_deg": [
+        89.96575927734375,
+        89.95006561279297
+      ],
+      "joint_positions_rad": [
+        -0.003378962865099311,
+        0.0012229608837515116,
+        -0.0015467883786186576,
+        0.0018480360740795732,
+        -0.002568477066233754,
+        0.004076543264091015
+      ]
+    },
+    {
+      "time_s": 8.22,
+      "base_height_m": 0.05249667540192604,
+      "joint_error_rad": 0.0024397221859544516,
+      "sole_angles_deg": [
+        89.9657211303711,
+        89.95012664794922
+      ],
+      "joint_positions_rad": [
+        -0.003380955196917057,
+        0.001226927386596799,
+        -0.0015460008289664984,
+        0.0018493789248168468,
+        -0.002562933135777712,
+        0.004072136711329222
+      ]
+    },
+    {
+      "time_s": 8.42,
+      "base_height_m": 0.052496522665023804,
+      "joint_error_rad": 0.0024399785324931145,
+      "sole_angles_deg": [
+        89.96575927734375,
+        89.95010375976562
+      ],
+      "joint_positions_rad": [
+        -0.0033795256167650223,
+        0.0012253622990101576,
+        -0.0015451323706656694,
+        0.0018485639011487365,
+        -0.002564816502854228,
+        0.004076471086591482
+      ]
+    },
+    {
+      "time_s": 8.620000000000001,
+      "base_height_m": 0.052496537566185,
+      "joint_error_rad": 0.002440388547256589,
+      "sole_angles_deg": [
+        89.96575927734375,
+        89.95008087158203
+      ],
+      "joint_positions_rad": [
+        -0.0033795081544667482,
+        0.0012242954690009356,
+        -0.00154424540232867,
+        0.0018460502615198493,
+        -0.002569659845903516,
+        0.004078571684658527
+      ]
+    },
+    {
+      "time_s": 8.82,
+      "base_height_m": 0.05249655991792679,
+      "joint_error_rad": 0.0024411347694694996,
+      "sole_angles_deg": [
+        89.96575927734375,
+        89.9500732421875
+      ],
+      "joint_positions_rad": [
+        -0.003381893504410982,
+        0.0012228162959218025,
+        -0.0015488147037103772,
+        0.0018532967660576105,
+        -0.0025636476930230856,
+        0.004076340235769749
+      ]
+    },
+    {
+      "time_s": 9.02,
+      "base_height_m": 0.05249646306037903,
+      "joint_error_rad": 0.002440600423142314,
+      "sole_angles_deg": [
+        89.9657211303711,
+        89.9500961303711
+      ],
+      "joint_positions_rad": [
+        -0.0033833873458206654,
+        0.0012283269315958023,
+        -0.0015436005778610706,
+        0.0018509587971493602,
+        -0.002562515903264284,
+        0.004074812866747379
+      ]
+    },
+    {
+      "time_s": 9.22,
+      "base_height_m": 0.052496474236249924,
+      "joint_error_rad": 0.0024399952962994576,
+      "sole_angles_deg": [
+        89.96575927734375,
+        89.95008087158203
+      ],
+      "joint_positions_rad": [
+        -0.0033795260824263096,
+        0.0012230552965775132,
+        -0.0015451201470568776,
+        0.0018500778824090958,
+        -0.002565535483881831,
+        0.004076656885445118
+      ]
+    },
+    {
+      "time_s": 9.42,
+      "base_height_m": 0.05249648913741112,
+      "joint_error_rad": 0.0024409356992691755,
+      "sole_angles_deg": [
+        89.9657211303711,
+        89.95011138916016
+      ],
+      "joint_positions_rad": [
+        -0.0033842327538877726,
+        0.0012279101647436619,
+        -0.001543175894767046,
+        0.0018490415532141924,
+        -0.002565158298239112,
+        0.0040760948322713375
+      ]
+    },
+    {
+      "time_s": 9.620000000000001,
+      "base_height_m": 0.052496567368507385,
+      "joint_error_rad": 0.0024392101913690567,
+      "sole_angles_deg": [
+        89.96578216552734,
+        89.95011901855469
+      ],
+      "joint_positions_rad": [
+        -0.003378354711458087,
+        0.0012249547289684415,
+        -0.0015439118724316359,
+        0.001851661130785942,
+        -0.0025629098527133465,
+        0.004073468502610922
+      ]
+    },
+    {
+      "time_s": 9.82,
+      "base_height_m": 0.05249656364321709,
+      "joint_error_rad": 0.0024407037999480963,
+      "sole_angles_deg": [
+        89.96573638916016,
+        89.9500961303711
+      ],
+      "joint_positions_rad": [
+        -0.003381334012374282,
+        0.0012241192162036896,
+        -0.0015474791871383786,
+        0.0018491239752620459,
+        -0.002565160160884261,
+        0.0040770056657493114
+      ]
+    },
+    {
+      "time_s": 10.02,
+      "base_height_m": 0.052496589720249176,
+      "joint_error_rad": 0.0024406216107308865,
+      "sole_angles_deg": [
+        89.96575927734375,
+        89.95008850097656
+      ],
+      "joint_positions_rad": [
+        -0.0033804569393396378,
+        0.001226630061864853,
+        -0.0015447791665792465,
+        0.0018478890415281057,
+        -0.0025676076766103506,
+        0.004076365847140551
+      ]
+    },
+    {
+      "time_s": 10.22,
+      "base_height_m": 0.052496571093797684,
+      "joint_error_rad": 0.002439905423671007,
+      "sole_angles_deg": [
+        89.96574401855469,
+        89.95012664794922
+      ],
+      "joint_positions_rad": [
+        -0.0033779905643314123,
+        0.0012266152771189809,
+        -0.0015447516925632954,
+        0.0018529095686972141,
+        -0.002562463516369462,
+        0.004074700642377138
+      ]
+    },
+    {
+      "time_s": 10.42,
+      "base_height_m": 0.05249657481908798,
+      "joint_error_rad": 0.0024401331320405006,
+      "sole_angles_deg": [
+        89.96576690673828,
+        89.95008850097656
+      ],
+      "joint_positions_rad": [
+        -0.0033782331738620996,
+        0.0012231826549395919,
+        -0.0015452586812898517,
+        0.0018487959168851376,
+        -0.0025674609933048487,
+        0.004077866207808256
+      ]
+    },
+    {
+      "time_s": 10.620000000000001,
+      "base_height_m": 0.05249658226966858,
+      "joint_error_rad": 0.0024399550165981054,
+      "sole_angles_deg": [
+        89.96574401855469,
+        89.95010375976562
+      ],
+      "joint_positions_rad": [
+        -0.0033826411236077547,
+        0.0012260031653568149,
+        -0.001543662277981639,
+        0.0018494239775463939,
+        -0.0025641443207859993,
+        0.004073855001479387
+      ]
+    },
+    {
+      "time_s": 10.82,
+      "base_height_m": 0.0524965338408947,
+      "joint_error_rad": 0.0024405578151345253,
+      "sole_angles_deg": [
+        89.96575164794922,
+        89.95008087158203
+      ],
+      "joint_positions_rad": [
+        -0.0033796457573771477,
+        0.001224769395776093,
+        -0.0015453911619260907,
+        0.0018489389913156629,
+        -0.0025676495861262083,
+        0.004076952114701271
+      ]
+    },
+    {
+      "time_s": 11.02,
+      "base_height_m": 0.052496537566185,
+      "joint_error_rad": 0.002440894953906536,
+      "sole_angles_deg": [
+        89.96572875976562,
+        89.95008850097656
+      ],
+      "joint_positions_rad": [
+        -0.0033823943231254816,
+        0.0012275560293346643,
+        -0.001542670652270317,
+        0.0018477692501619458,
+        -0.0025678554084151983,
+        0.004077123012393713
+      ]
+    },
+    {
+      "time_s": 11.22,
+      "base_height_m": 0.052496571093797684,
+      "joint_error_rad": 0.002439757576212287,
+      "sole_angles_deg": [
+        89.96575164794922,
+        89.95011901855469
+      ],
+      "joint_positions_rad": [
+        -0.003379381960257888,
+        0.0012248280690982938,
+        -0.0015456255059689283,
+        0.0018484395695850253,
+        -0.0025654714554548264,
+        0.004074798431247473
+      ]
+    },
+    {
+      "time_s": 11.42,
+      "base_height_m": 0.05249655991792679,
+      "joint_error_rad": 0.002440690528601408,
+      "sole_angles_deg": [
+        89.96575927734375,
+        89.95008087158203
+      ],
+      "joint_positions_rad": [
+        -0.0033831947948783636,
+        0.0012269659200683236,
+        -0.001544669852592051,
+        0.001852331799454987,
+        -0.0025612395256757736,
+        0.004075740464031696
+      ]
+    },
+    {
+      "time_s": 11.620000000000001,
+      "base_height_m": 0.05249661207199097,
+      "joint_error_rad": 0.0024395394138991833,
+      "sole_angles_deg": [
+        89.96575164794922,
+        89.95012664794922
+      ],
+      "joint_positions_rad": [
+        -0.0033787947613745928,
+        0.0012309751473367214,
+        -0.0015424846205860376,
+        0.001849917694926262,
+        -0.002562915673479438,
+        0.004072147887200117
+      ]
+    },
+    {
+      "time_s": 11.82,
+      "base_height_m": 0.05249665677547455,
+      "joint_error_rad": 0.0024406425654888153,
+      "sole_angles_deg": [
+        89.9657211303711,
+        89.9500961303711
+      ],
+      "joint_positions_rad": [
+        -0.0033829808235168457,
+        0.001226242515258491,
+        -0.0015428934711962938,
+        0.0018520249286666512,
+        -0.002561356406658888,
+        0.004078357480466366
+      ]
+    },
+    {
+      "time_s": 12.02,
+      "base_height_m": 0.05249656364321709,
+      "joint_error_rad": 0.002438909839838743,
+      "sole_angles_deg": [
+        89.96576690673828,
+        89.95011901855469
+      ],
+      "joint_positions_rad": [
+        -0.0033767540007829666,
+        0.001223847852088511,
+        -0.0015445752069354057,
+        0.0018475920660421252,
+        -0.0025658064987510443,
+        0.0040748827159404755
+      ]
+    },
+    {
+      "time_s": 12.22,
+      "base_height_m": 0.05249647796154022,
+      "joint_error_rad": 0.002441131044179201,
+      "sole_angles_deg": [
+        89.96577453613281,
+        89.95006561279297
+      ],
+      "joint_positions_rad": [
+        -0.003380213864147663,
+        0.0012214138405397534,
+        -0.0015489112120121717,
+        0.0018535046838223934,
+        -0.0025644253473728895,
+        0.004078316502273083
+      ]
+    },
+    {
+      "time_s": 12.42,
+      "base_height_m": 0.052496448159217834,
+      "joint_error_rad": 0.0024397389497607946,
+      "sole_angles_deg": [
+        89.96576690673828,
+        89.95006561279297
+      ],
+      "joint_positions_rad": [
+        -0.003377796383574605,
+        0.0012248475104570389,
+        -0.0015459608985111117,
+        0.0018513245740905404,
+        -0.002565679606050253,
+        0.004072824027389288
+      ]
+    },
+    {
+      "time_s": 12.620000000000001,
+      "base_height_m": 0.052496496587991714,
+      "joint_error_rad": 0.00244086142629385,
+      "sole_angles_deg": [
+        89.96576690673828,
+        89.9500732421875
+      ],
+      "joint_positions_rad": [
+        -0.003380540991201997,
+        0.0012256616028025746,
+        -0.0015439027920365334,
+        0.0018518454162403941,
+        -0.0025661149993538857,
+        0.004077103454619646
+      ]
+    },
+    {
+      "time_s": 12.82,
+      "base_height_m": 0.05249645560979843,
+      "joint_error_rad": 0.0024399212561547756,
+      "sole_angles_deg": [
+        89.96577453613281,
+        89.95010375976562
+      ],
+      "joint_positions_rad": [
+        -0.00338167417794466,
+        0.0012288809521123767,
+        -0.0015411979984492064,
+        0.0018487557535991073,
+        -0.002565424656495452,
+        0.004073592368513346
+      ]
+    },
+    {
+      "time_s": 13.02,
+      "base_height_m": 0.05249651521444321,
+      "joint_error_rad": 0.002440009033307433,
+      "sole_angles_deg": [
+        89.96578216552734,
+        89.95008850097656
+      ],
+      "joint_positions_rad": [
+        -0.0033801670651882887,
+        0.001224505016580224,
+        -0.0015441790455952287,
+        0.0018466933397576213,
+        -0.0025674239732325077,
+        0.004077085293829441
+      ]
+    },
+    {
+      "time_s": 13.22,
+      "base_height_m": 0.05249655246734619,
+      "joint_error_rad": 0.0024405941367149353,
+      "sole_angles_deg": [
+        89.96575164794922,
+        89.9500961303711
+      ],
+      "joint_positions_rad": [
+        -0.0033821314573287964,
+        0.0012232118751853704,
+        -0.0015456995461136103,
+        0.0018493455136194825,
+        -0.0025655219797044992,
+        0.004077655263245106
+      ]
+    },
+    {
+      "time_s": 13.42,
+      "base_height_m": 0.05249641463160515,
+      "joint_error_rad": 0.002439652569591999,
+      "sole_angles_deg": [
+        89.96578979492188,
+        89.95010375976562
+      ],
+      "joint_positions_rad": [
+        -0.003380393609404564,
+        0.0012248213170096278,
+        -0.0015430371277034283,
+        0.0018504541367292404,
+        -0.0025643769185990095,
+        0.004074831027537584
+      ]
+    },
+    {
+      "time_s": 13.620000000000001,
+      "base_height_m": 0.05249654874205589,
+      "joint_error_rad": 0.002440499374642968,
+      "sole_angles_deg": [
+        89.96575927734375,
+        89.9500961303711
+      ],
+      "joint_positions_rad": [
+        -0.003383019706234336,
+        0.001225840300321579,
+        -0.0015441497089341283,
+        0.0018497098935768008,
+        -0.002564700087532401,
+        0.004075576085597277
+      ]
+    },
+    {
+      "time_s": 13.82,
+      "base_height_m": 0.052496537566185,
+      "joint_error_rad": 0.0024396793451160192,
+      "sole_angles_deg": [
+        89.96576690673828,
+        89.95011138916016
+      ],
+      "joint_positions_rad": [
+        -0.003377221990376711,
+        0.0012209959095343947,
+        -0.001544858212582767,
+        0.0018495996482670307,
+        -0.002566723618656397,
+        0.004078675527125597
+      ]
+    },
+    {
+      "time_s": 14.02,
+      "base_height_m": 0.05249665677547455,
+      "joint_error_rad": 0.0024398374371230602,
+      "sole_angles_deg": [
+        89.96575164794922,
+        89.95011138916016
+      ],
+      "joint_positions_rad": [
+        -0.0033790795132517815,
+        0.0012193153379485011,
+        -0.00154499476775527,
+        0.0018513635732233524,
+        -0.002565592061728239,
+        0.004078678786754608
+      ]
+    },
+    {
+      "time_s": 14.22,
+      "base_height_m": 0.05249642953276634,
+      "joint_error_rad": 0.0024398677051067352,
+      "sole_angles_deg": [
+        89.96576690673828,
+        89.95010375976562
+      ],
+      "joint_positions_rad": [
+        -0.003381568007171154,
+        0.001221493468619883,
+        -0.0015411607455462217,
+        0.0018494533142074943,
+        -0.0025673096533864737,
+        0.004078221041709185
+      ]
+    },
+    {
+      "time_s": 14.42,
+      "base_height_m": 0.05249645188450813,
+      "joint_error_rad": 0.002438880503177643,
+      "sole_angles_deg": [
+        89.96576690673828,
+        89.95011901855469
+      ],
+      "joint_positions_rad": [
+        -0.0033778951037675142,
+        0.0012231440050527453,
+        -0.0015425364254042506,
+        0.0018492669332772493,
+        -0.0025657694786787033,
+        0.004074670374393463
+      ]
+    },
+    {
+      "time_s": 14.620000000000001,
+      "base_height_m": 0.052496571093797684,
+      "joint_error_rad": 0.0024393645580857992,
+      "sole_angles_deg": [
+        89.96578979492188,
+        89.95011901855469
+      ],
+      "joint_positions_rad": [
+        -0.003378320951014757,
+        0.001219362486153841,
+        -0.0015426176832988858,
+        0.001849255757406354,
+        -0.0025687171146273613,
+        0.004077912773936987
+      ]
+    },
+    {
+      "time_s": 14.82,
+      "base_height_m": 0.052496474236249924,
+      "joint_error_rad": 0.002438385272398591,
+      "sole_angles_deg": [
+        89.9657974243164,
+        89.95012664794922
+      ],
+      "joint_positions_rad": [
+        -0.0033757025375962257,
+        0.0012201889185234904,
+        -0.001545230275951326,
+        0.0018505952320992947,
+        -0.0025654404889792204,
+        0.0040731532499194145
+      ]
+    },
+    {
+      "time_s": 15.02,
+      "base_height_m": 0.05249663069844246,
+      "joint_error_rad": 0.002438242780044675,
+      "sole_angles_deg": [
+        89.96575927734375,
+        89.95015716552734
+      ],
+      "joint_positions_rad": [
+        -0.0033786119893193245,
+        0.0012239390052855015,
+        -0.0015410106861963868,
+        0.0018515224801376462,
+        -0.0025622607208788395,
+        0.004072111565619707
+      ]
+    },
+    {
+      "time_s": 15.22,
+      "base_height_m": 0.05249661207199097,
+      "joint_error_rad": 0.0024385228753089905,
+      "sole_angles_deg": [
+        89.96575164794922,
+        89.95014190673828
+      ],
+      "joint_positions_rad": [
+        -0.003379973117262125,
+        0.001223780564032495,
+        -0.0015433278167620301,
+        0.0018489165231585503,
+        -0.002561582252383232,
+        0.004073556512594223
+      ]
+    },
+    {
+      "time_s": 15.42,
+      "base_height_m": 0.05249660089612007,
+      "joint_error_rad": 0.0024388565216213465,
+      "sole_angles_deg": [
+        89.96575164794922,
+        89.95014190673828
+      ],
+      "joint_positions_rad": [
+        -0.0033817889634519815,
+        0.001225704443641007,
+        -0.0015417577233165503,
+        0.001846657833084464,
+        -0.002562512643635273,
+        0.004074717406183481
+      ]
+    },
+    {
+      "time_s": 15.620000000000001,
+      "base_height_m": 0.05249642953276634,
+      "joint_error_rad": 0.002439131960272789,
+      "sole_angles_deg": [
+        89.96577453613281,
+        89.95010375976562
+      ],
+      "joint_positions_rad": [
+        -0.003378179157152772,
+        0.0012213318841531873,
+        -0.001544163329526782,
+        0.0018484590109437704,
+        -0.00256449356675148,
+        0.004078165162354708
+      ]
+    },
+    {
+      "time_s": 15.82,
+      "base_height_m": 0.052496537566185,
+      "joint_error_rad": 0.002438805066049099,
+      "sole_angles_deg": [
+        89.96576690673828,
+        89.95012664794922
+      ],
+      "joint_positions_rad": [
+        -0.0033755777403712273,
+        0.0012196983443573117,
+        -0.0015434280503541231,
+        0.0018492033705115318,
+        -0.0025674805510789156,
+        0.004077441990375519
+      ]
+    }
+  ],
+  "snake_to_biped": {
+    "episodes": 16,
+    "ever_strict_success": 12,
+    "mean_final_base_height_m": 0.21015210449695587,
+    "mean_goal_joint_error_rad": 0.089040108025074,
+    "mean_abs_joint_position_rad": 0.9969326853752136,
+    "mean_final_worst_sole_angle_deg": 23.16102409362793,
+    "mean_duration_s": 12.393750190734863,
+    "episodes_ever_above_0_23m": 16,
+    "lying_target_pose_count": 0
+  },
+  "biped_to_snake": {
+    "episodes": 16,
+    "ever_strict_success": 16,
+    "mean_final_base_height_m": 0.05248028039932251,
+    "mean_goal_joint_error_rad": 0.0032047193963080645,
+    "mean_abs_joint_position_rad": 0.0032047193963080645,
+    "mean_final_worst_sole_angle_deg": 89.97975158691406,
+    "mean_duration_s": 16.0,
+    "episodes_ever_above_0_23m": 16,
+    "lying_target_pose_count": 16
+  }
+}

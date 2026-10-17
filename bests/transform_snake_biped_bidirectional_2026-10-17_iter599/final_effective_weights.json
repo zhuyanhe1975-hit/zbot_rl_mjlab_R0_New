@@ -1,0 +1,21 @@
+{
+  "config": {
+    "standing_stage_joint_weight": 12.0,
+    "standing_stage_height_weight": 1.0,
+    "standing_stage_velocity_weight": 8.0
+  },
+  "rewards": {
+    "reset_failure": -10.0,
+    "sole_ground_alignment": 1.0
+  },
+  "effective_weights": {
+    "joint_standing": 12.0,
+    "base_height_progress": 1.0,
+    "base_ascent_velocity": 8.0,
+    "sole_ground_alignment": 1.0,
+    "reset_failure": -10.0
+  },
+  "stage": null,
+  "pose_prepared": false,
+  "ramp_elapsed_steps": 0
+}

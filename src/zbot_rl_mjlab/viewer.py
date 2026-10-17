@@ -3,7 +3,7 @@
 import numpy as np
 from mjlab.viewer import NativeMujocoViewer
 from mjlab.viewer.base import ViewerAction
-from mjlab.viewer.native.keys import KEY_BACKSLASH
+from mjlab.viewer.native.keys import KEY_BACKSLASH, KEY_PAGE_DOWN, KEY_PAGE_UP
 
 from . import mdp
 
@@ -36,10 +36,21 @@ class FollowCameraViewer(NativeMujocoViewer):
         # Runs on the MuJoCo viewer thread: only queue the request.
         if key == FOLLOW_KEY:
             self.request_action("CUSTOM", _FOLLOW_PAYLOAD)
+        elif key in (KEY_PAGE_UP, KEY_PAGE_DOWN):
+            self.request_action("CUSTOM", "transform_stand" if key == KEY_PAGE_UP else "transform_snake")
 
     def _handle_custom_action(self, action, payload):
         if action == ViewerAction.CUSTOM and payload == _FOLLOW_PAYLOAD:
             return self._toggle_follow()
+        if action == ViewerAction.CUSTOM and payload in ("transform_stand", "transform_snake"):
+            env = self.env.unwrapped
+            if "transform" not in env.cfg.commands:
+                return False
+            target = "stand" if payload == "transform_stand" else "snake"
+            env.command_manager.get_term("transform").set_target(target)
+            env.observation_manager.compute(update_history=True)
+            print(f"[INFO] Transform command: {target}; manual control, automatic resets disabled")
+            return True
         return super()._handle_custom_action(action, payload)
 
     def _toggle_follow(self):

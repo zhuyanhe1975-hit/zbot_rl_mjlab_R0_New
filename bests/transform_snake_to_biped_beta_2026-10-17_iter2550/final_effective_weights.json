@@ -1,0 +1,41 @@
+{
+  "config": {
+    "first_stage_initial_pose_weight": -0.02,
+    "first_stage_joint_weight": 3.0,
+    "standing_stage_joint_weight": 6.0,
+    "standing_stage_height_weight": 0.0,
+    "standing_stage_velocity_weight": 0.0,
+    "base_support_distance_weight": -0.2,
+    "base_gravity_alignment_weight": 0.0,
+    "survival_weight": 0.0,
+    "end_joint_flip_weight": -1.0,
+    "first_stage_roll_rate_weight": -0.05,
+    "feet_contact_weight": 0.5
+  },
+  "rewards": {
+    "sole_ground_alignment": 2.0,
+    "sole_height": -1.0,
+    "joint_symmetry": -0.2,
+    "base_z_roll": -1.0,
+    "reset_failure": -10.0
+  },
+  "effective_weights": {
+    "end_joint_flip": -1.0,
+    "axial_roll_rate": 0.0,
+    "initial_joint_pose": 0.0,
+    "joint_standing": 6.0,
+    "base_height_progress": 0.0,
+    "base_ascent_velocity": 0.0,
+    "base_support_distance": -0.2,
+    "joint_symmetry": -0.2,
+    "sole_ground_alignment": 2.0,
+    "both_feet_contact": 0.5,
+    "sole_height": -1.0,
+    "base_z_roll": -1.0,
+    "base_gravity_alignment": 0.0,
+    "reset_failure": -10.0,
+    "survival": 0.0
+  },
+  "stage": 2,
+  "ramp_elapsed_steps": 27726
+}

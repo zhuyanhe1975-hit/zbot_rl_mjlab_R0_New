@@ -2,8 +2,10 @@
 
 Layout: `bests/<experiment>_<date>_iter<N>/{model_<N>.pt, env.yaml, agent.yaml, SHA256SUMS}`.
 
-A checkpoint is kept here only if it loads strictly into the current task and
-runs a full 20 s episode without falling (checked with 16 parallel envs).
+A checkpoint should load strictly into its current task. Walking validation uses
+a full 20 s episode without falling (16 parallel envs); transformation validation
+uses its own 16 s episode and joint-zeroing/grounded-hold success criteria.
+Explicitly requested archives with incomplete validation are labeled below.
 When the environment, observations or robot parameters change, re-check every
 entry and delete the ones that no longer replay.
 
@@ -20,6 +22,10 @@ without a velocity estimator.
 
 | Directory | Task | Notes |
 |---|---|---|
+| `transform_snake_biped_bidirectional_2026-10-17_iter599` | `Mjlab-Zbot-6dof-Transform-Snake-Biped-Bidirectional` | 600 iterations from scratch, Actor37/Critic45, 3 mirrored Beta actions, roll ±180°. Training-rule evaluation: stand12/16, snake16/16; no lying-biped final states. Continuous keyboard stand→snake→stand: 8/8 each phase, zero automatic resets. Spatial pose + ascent fade corrected, five rewards. Full configs, source/assets, logs, evaluation and checksums archived. |
+| `transform_snake_to_biped_teacher_2026-10-17_iter200` | `Mjlab-Zbot-6dof-Transform-Snake-To-Biped-Beta-Robust-Teacher` | Random snake-axis roll ±90°, Actor36/Critic44, 3 mirrored Beta actions. Independent 16-env/16-s evaluation: strict success 16/16, final sole tilt ≤0.069°, max joint error ≤0.037 rad, hold ≥13.78 s. First-rise speed reward shuts off at base peak 0.23 m. No external disturbances. Configs, source/assets snapshot, logs and checksums included. |
+| `transform_snake_to_biped_beta_2026-10-17_iter2550` | `Mjlab-Zbot-6dof-Transform-Snake-To-Biped-Beta` | Native Beta, 30-dim actor and 6 actions. Supplied 4-env/16-s evaluation: strict success 4/4. Trained with manual reward hot updates; new automatic preparation course is regression tested but not cold-start retrained. Startup configs and final effective weights are separate; native task final check pending. |
+| `transform_biped_to_snake_2026-10-16_iter199` | `Mjlab-Zbot-6dof-Transform-Biped-To-Snake` | Requested checkpoint from run `2026-10-16_15-43-07`; independent 6-dim actions, 30-dim actor. Strict actor load passed; 16 envs completed 16 s with no unsafe termination, final COM ≈0.0544 m. Strict zero-angle/hold success: 0/16. Configs, checksums, evaluation and provenance included. |
 | `deploy_walking_2026-10-11_iter1499` | `Mjlab-Zbot-6dof-Deploy-Walking` | 1500 iterations, 8192 envs. 28-dim actor without base_lin_vel / yaw_error; trained with observation noise and IMU bias, 0-2 step action delay, PD gain, mass/inertia, friction, COM and base-push randomization. 0 falls in every scorecard scenario (scorecard was run by the user; this checkpoint is assumed to be the one scored). **Not yet tried on hardware.** |
 | `velocity_energy_disturbed_2026-10-10_iter499` | `Mjlab-Zbot-6dof-Velocity-Energy-Disturbed-Walking` | 500 iterations, 8192 envs. Also replays in `...Velocity-Energy-Tracking-Walking`. 0 falls in 16 envs x 1000 steps. |
 | `velocity_energy_tracking_2026-10-10_iter499` | `Mjlab-Zbot-6dof-Velocity-Energy-Tracking-Walking` | 500 iterations. 0 falls in 16 envs x 1000 steps. |

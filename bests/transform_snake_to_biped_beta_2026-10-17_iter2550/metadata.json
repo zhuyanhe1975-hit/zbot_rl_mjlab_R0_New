@@ -1,0 +1,42 @@
+{
+  "task": "Mjlab-Zbot-6dof-Transform-Snake-To-Biped-Beta",
+  "source_registered_task": "Mjlab-Zbot-6dof-Transform-Snake-To-Biped",
+  "source_run": "logs/autonomous_rl/zbot_transform_snake_to_biped/2026-10-17_14-07-25_beta_reserved_hold_fix_r6d",
+  "source_checkpoint": "logs/autonomous_rl/zbot_transform_snake_to_biped/2026-10-17_14-07-25_beta_reserved_hold_fix_r6d/model_2550.pt",
+  "iteration": 2550,
+  "architecture": {
+    "distribution": "native RSL BetaDistribution",
+    "action_range": [
+      -1,
+      1
+    ],
+    "observation_dim": 30,
+    "action_dim": 6,
+    "raw_head_dim": 12,
+    "hold_time_slot": "fixed zero"
+  },
+  "training_provenance": {
+    "course": "Manual reward hot updates: pose 0.6 -> preparation 3 -> standing 6; symmetry -0.2; coarse maximum joint error 1 rad before stage 2.",
+    "config_files": "env.yaml and agent.yaml are the original run startup files; final_effective_weights.json is extracted from this checkpoint metadata.",
+    "automatic_course": "New Beta task automates the preparation latch; regression tested, not verified by a complete cold-start retraining."
+  },
+  "validation": {
+    "numerical_evaluation": "Copied evaluation.json: 4 environments, 16 seconds, strict goal success rate 1.0. Evaluation used matching native Beta trial loader under original reverse task ID.",
+    "production_task_eval": {
+      "status": "passed",
+      "file": "native_evaluation.json",
+      "environments": 4,
+      "duration_s": 16,
+      "success_rate": 1.0,
+      "max_final_joint_error_rad": 0.05471086502075195,
+      "minimum_continuous_hold_s": 11.760079383850098
+    },
+    "cpu_actor_strict_load": "Passed archive regression: real CPU MLPModel using registered Beta config, strict state load, finite 6-action deterministic inference.",
+    "not_done": [
+      "60-second evaluation",
+      "16-environment evaluation",
+      "ONNX/JIT export",
+      "hardware validation"
+    ]
+  }
+}

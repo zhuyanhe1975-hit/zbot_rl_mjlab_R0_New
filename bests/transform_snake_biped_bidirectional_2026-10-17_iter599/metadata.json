@@ -1,0 +1,116 @@
+{
+  "task": "Mjlab-Zbot-6dof-Transform-Snake-Biped-Bidirectional",
+  "archived_at": "2026-10-17T18:45:42.922860+08:00",
+  "source_run": "logs/rsl_rl/zbot_transform_snake_biped_bidirectional/2026-10-17_18-30-25",
+  "source_checkpoint": "logs/rsl_rl/zbot_transform_snake_biped_bidirectional/2026-10-17_18-30-25/model_599.pt",
+  "checkpoint_iteration": 599,
+  "training_iterations": 600,
+  "trained_from_scratch": true,
+  "user_assessment": "User reports good results after spatial pose/reward correction and explicitly requested archival.",
+  "sha256_model": "f08571e1e69c5db33f46a983604453edbb8701faaae748542e64ab92df3ea3e5",
+  "architecture": {
+    "actor_observations": 37,
+    "critic_observations": 45,
+    "policy_actions": 3,
+    "actuator_targets": 6,
+    "raw_beta_head_width": 6,
+    "distribution": "Beta",
+    "mirror_mapping": "[q1,q2,q3,-q3,-q2,-q1]",
+    "actor_running_normalization": false
+  },
+  "recipe": {
+    "initial_roll_degrees": [
+      -180,
+      180
+    ],
+    "initial_direction_occupancy_balanced": true,
+    "initial_standing_fraction": 0.5,
+    "standing_pose_gravity_scale": 1.0,
+    "standing_pose_definition": "Negative joint Smooth L1 cost plus full base-frame gravity mismatch; orientation cost only for standing command.",
+    "velocity_definition": "First-rise velocity shaped by joint, height and gravity readiness; permanent shutoff after peak base height >= 0.23 m for the command.",
+    "ascent_reward_stop_height_m": 0.23,
+    "fall_arm_height_m": 0.05,
+    "early_fall_arm_height_m": 0.05,
+    "minimum_peak_height_drop_m": 0.01,
+    "manual_play_auto_resets_disabled_after_keyboard_command": true,
+    "external_disturbances_enabled": false,
+    "goal_motion_reward_present": false
+  },
+  "validation": {
+    "source_pose_evaluation": {
+      "snake_to_biped": {
+        "episodes": 16,
+        "ever_strict_success": 12,
+        "mean_final_base_height_m": 0.21015210449695587,
+        "mean_goal_joint_error_rad": 0.089040108025074,
+        "mean_abs_joint_position_rad": 0.9969326853752136,
+        "mean_final_worst_sole_angle_deg": 23.16102409362793,
+        "mean_duration_s": 12.393750190734863,
+        "episodes_ever_above_0_23m": 16,
+        "lying_target_pose_count": 0
+      },
+      "biped_to_snake": {
+        "episodes": 16,
+        "ever_strict_success": 16,
+        "mean_final_base_height_m": 0.05248028039932251,
+        "mean_goal_joint_error_rad": 0.0032047193963080645,
+        "mean_abs_joint_position_rad": 0.0032047193963080645,
+        "mean_final_worst_sole_angle_deg": 89.97975158691406,
+        "mean_duration_s": 16.0,
+        "episodes_ever_above_0_23m": 16,
+        "lying_target_pose_count": 16
+      }
+    },
+    "source_pose_protocol": {
+      "environments": 32,
+      "episodes_per_direction": 16,
+      "seconds_per_episode": 16,
+      "seed": 42,
+      "training_failure_rules_enabled": true,
+      "lying_target_pose_count_note": "This heuristic denotes undesired lying biped shapes only for snake_to_biped; lying is the desired goal for biped_to_snake."
+    },
+    "manual_command_evaluation": {
+      "environments": 8,
+      "seed": 42,
+      "seconds_per_command": 16,
+      "stages": [
+        {
+          "command": "stand",
+          "ever_strict_success_count": 8,
+          "final_strict_success_count": 8,
+          "minimum_final_continuous_hold_seconds": 12.060086250305176
+        },
+        {
+          "command": "snake",
+          "ever_strict_success_count": 8,
+          "final_strict_success_count": 8,
+          "minimum_final_continuous_hold_seconds": 13.200112342834473
+        },
+        {
+          "command": "stand",
+          "ever_strict_success_count": 8,
+          "final_strict_success_count": 8,
+          "minimum_final_continuous_hold_seconds": 9.940037727355957
+        }
+      ],
+      "automatic_reset_count": 0,
+      "callbacks_preserve_pose_targets_and_episode_counters": true
+    }
+  },
+  "dependencies": {
+    "torch": "2.14.0",
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.14.0",
+    "mjlab": "1.6.0",
+    "rsl-rl-lib": "5.5.1"
+  },
+  "source_snapshot": "Project src/, robot assets, play.py, train.py, task documentation and both evaluation scripts at archival. External MJLab checkout and Python environment are not bundled. Training startup env.yaml/agent.yaml are copied verbatim.",
+  "git_head": "4c1be1464c0c798bd9a1ad6261ea405443a40839",
+  "working_tree_dirty": true,
+  "known_limits": [
+    "Training-rule source test has four standing failures (12/16 strict success); it is not universal random-roll recovery.",
+    "Manual trajectory test uses eight initial states and one stand/snake/stand sequence of 16 s per stage.",
+    "No external perturbation or hardware evaluation."
+  ]
+}

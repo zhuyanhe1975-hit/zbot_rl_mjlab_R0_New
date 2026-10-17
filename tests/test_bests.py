@@ -15,16 +15,26 @@ from pathlib import Path
 import pytest
 import torch
 import yaml
-from mjlab.tasks.registry import list_tasks, load_env_cfg
+from mjlab.envs.mdp.actions import JointPositionActionCfg
+from mjlab.rl import RslRlOnPolicyRunnerCfg
+from mjlab.tasks.registry import list_tasks, load_env_cfg, load_rl_cfg
+from rsl_rl.models import MLPModel
+from tensordict import TensorDict
 
 import zbot_rl_mjlab  # noqa: F401  (registers the tasks)
+from zbot_rl_mjlab.env_cfg import ZbotEnvCfg
 from zbot_rl_mjlab.robot import ARMATURE, DAMPING, SIM_EFFORT_LIMIT, STIFFNESS
+from zbot_rl_mjlab.tasks.transformation.mirror_actions import (
+    MirroredJointTargetRateActionCfg,
+)
 
 BESTS = Path(__file__).resolve().parents[1] / "bests"
 ENTRIES = sorted(p for p in BESTS.iterdir() if p.is_dir())
 
 # Size of each actor observation term.
 TERM_DIMS = {
+    "teacher_state": 36,
+    "command_teacher_state": 37,
     "base_lin_vel": 3,
     "base_ang_vel": 3,
     "projected_gravity": 3,
@@ -36,6 +46,22 @@ TERM_DIMS = {
     "frequency": 1,
     "target_speed": 1,
     "velocity_command": 3,
+    "last_action": 6,
+    "com_state": 2,
+    "commanded_target": 6,
+    "hold_time": 1,
+    "support_state": 0,  # Default reverse-task mode preserves 30-D checkpoints.
+    "joint_goal_error": 6,
+    "joint_velocity": 6,
+    "independent_target": 3,
+    "independent_last_action": 3,
+    "base_angular_velocity": 3,
+    "base_height": 1,
+    "base_linear_velocity": 3,
+    "base_world_vertical_velocity": 1,
+    "ground_contacts": 3,
+    "sole_heights": 2,
+    "sole_down_cosine": 2,
 }
 ACTION_DIM = 6
 
@@ -110,13 +136,37 @@ def test_archived_model_matches_the_current_task(entry):
     )
 
     state = checkpoint(entry)["actor_state_dict"]
-    obs_dim = sum(TERM_DIMS[name] for name in saved_terms)
-    assert state["obs_normalizer._mean"].shape[-1] == obs_dim
-    last = max(int(k.split(".")[1]) for k in state if k.startswith("mlp."))
-    assert state[f"mlp.{last}.weight"].shape[0] == ACTION_DIM
+    obs_dim = sum(
+        13
+        if name == "support_state" and saved.get("support_observations", False)
+        else TERM_DIMS[name]
+        for name in saved_terms
+    )
+    if "obs_normalizer._mean" in state:
+        assert state["obs_normalizer._mean"].shape[-1] == obs_dim
     assert state["mlp.0.weight"].shape[1] == obs_dim
+    agent = load_rl_cfg(task)
+    assert isinstance(agent, RslRlOnPolicyRunnerCfg)
+    obs = TensorDict({"actor": torch.zeros(2, obs_dim)}, batch_size=[2])
+    action_dim = 3 if isinstance(live.actions["joint_pos"], MirroredJointTargetRateActionCfg) else ACTION_DIM
+    actor = MLPModel(
+        obs=obs,
+        obs_groups={"actor": ["actor"]},
+        obs_set="actor",
+        output_dim=action_dim,
+        hidden_dims=agent.actor.hidden_dims,
+        activation=agent.actor.activation,
+        obs_normalization=agent.actor.obs_normalization,
+        distribution_cfg=agent.actor.distribution_cfg,
+    )
+    actor.load_state_dict(state, strict=True)
+    with torch.no_grad():
+        actions = actor(obs)
+    assert actions.shape == (2, action_dim)
+    assert torch.isfinite(actions).all()
 
     if "frequency" in saved_terms:
+        assert isinstance(live, ZbotEnvCfg)
         # The frequency observation is normalized by this range, so a different range
         # feeds the policy a different input even though every shape still matches.
         assert (saved["step_frequency_min"], saved["step_frequency_max"]) == (
@@ -126,8 +176,10 @@ def test_archived_model_matches_the_current_task(entry):
     assert saved["decimation"] == live.decimation
     assert saved["sim"]["mujoco"]["timestep"] == live.sim.mujoco.timestep
     action = saved["actions"]["joint_pos"]
-    assert action["scale"] == live.actions["joint_pos"].scale
-    assert action["use_default_offset"] == live.actions["joint_pos"].use_default_offset
+    live_action = live.actions["joint_pos"]
+    assert isinstance(live_action, JointPositionActionCfg)
+    assert action["scale"] == live_action.scale
+    assert action["use_default_offset"] == live_action.use_default_offset
 
 
 @pytest.mark.parametrize("entry", ENTRIES, ids=lambda p: p.name)
